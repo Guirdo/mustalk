@@ -1,0 +1,7 @@
+@include xs-screen{
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

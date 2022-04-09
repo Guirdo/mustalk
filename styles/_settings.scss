@@ -1,0 +1,40 @@
+//Colours, fonts, layouts, typography and anything that can be used within a style in a later file. 
+
+//Colors
+$colors: ("primary": blue,
+    "secondary":red,
+    "white":white,
+);
+
+$primary: blue;
+$secondary: red;
+$white: white;
+
+$base-colors: ("primary", "secondary","white");
+
+:root {
+    @each $colorName,
+    $colorValue in $colors {
+        --#{$colorName}: #{$colorValue};
+    }
+}
+
+// ---------- FONT
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap');
+$font: 'Inconsolata',
+monospace;
+//sizes
+$f-sm: 16px;
+$f-md: 20px;
+$f-lg: 40px;
+$f-xlg: 52px;
+
+//Space
+$s-sm: 12px;
+$s-md: 20px;
+$s-lg: 28px;
+
+//Breakpoint
+$sm-screen: 600px;
+$md-screen: 1024px;
+$lg-screen: 1440px;

@@ -1,0 +1,15 @@
+//HTML tags only
+h1 {
+  font-size: $f-lg;
+  text-align: center;
+}
+
+a {
+  color: $primary;
+}
+
+input {
+  font-size: $f-md;
+  padding: $s-sm;
+  width: 100%;
+}

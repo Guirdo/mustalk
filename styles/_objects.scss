@@ -1,13 +1,6 @@
 .container{
-    margin: $s-md;
-
-    @include md-screen{
-        padding: $s-md;
-    }
-
-    @include lg-screen{
-        padding: $s-lg;
-    }
+  display: flex;
+  flex-direction: column;
 }
 
 .btn {

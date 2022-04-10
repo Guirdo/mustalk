@@ -5,11 +5,13 @@ h1 {
 }
 
 a {
-  color: $primary;
+  color: $info;
 }
 
 input {
   font-size: $f-md;
   padding: $s-sm;
   width: 100%;
+  border-radius: 8px;
+  border: 2px solid lighten($primary, 30%);
 }

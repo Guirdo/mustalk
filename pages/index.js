@@ -4,7 +4,7 @@ import AuthLayout from "../components/AuthLayout";
 export default function Home() {
   return (
     <AuthLayout>
-      <h1 className="big-title">MusTalk</h1>
+      <h1 className="big-title text-primary">MusTalk</h1>
 
       <h2>Let{"'"}s talk about your music</h2>
 

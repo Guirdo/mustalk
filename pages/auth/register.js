@@ -6,7 +6,7 @@ function RegisterScreen() {
         <AuthLayout
             title="Sign up"
         >
-            <h1 className="big-title">
+            <h1 className="big-title text-primary">
                 <Link href="/"><a className="no-decoration">MusTalk</a></Link>
             </h1>
 

@@ -1,14 +1,17 @@
 //Colours, fonts, layouts, typography and anything that can be used within a style in a later file. 
 
 //Colors
-$colors: ("primary": blue,
-    "secondary":red,
-    "white":white,
-);
+$primary: #d51212;
+$secondary: #009022;
+$info: #009A7C;
+$white: #FFF5F0;
+$danger: #FF515A;
 
-$primary: blue;
-$secondary: red;
-$white: white;
+$colors: ("primary": $primary,
+    "secondary":$secondary,
+    "info":$info,
+    "white":$white,
+);
 
 $base-colors: ("primary", "secondary","white");
 

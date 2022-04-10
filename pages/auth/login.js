@@ -6,7 +6,7 @@ function LoginScreen() {
         <AuthLayout
             title="Log in"
         >
-            <h1 className="big-title">
+            <h1 className="big-title  text-primary">
                 <Link href="/"><a className="no-decoration">MusTalk</a></Link>
             </h1>
 

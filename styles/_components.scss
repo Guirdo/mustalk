@@ -1,5 +1,4 @@
 .auth {
-    padding: $s-md;
     justify-content: space-between;
     height: 100vh;
     align-items: center;
@@ -36,4 +35,21 @@
             width: 30%;
         }
     }
+}
+
+.action{
+    display: flex;
+    margin-right: $s-sm;
+
+    & span:nth-child(2){
+        margin-left: $s-sm;
+    }
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.music-card{
+    margin: $s-sm 0;
 }

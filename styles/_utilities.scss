@@ -6,8 +6,16 @@
     font-size: $f-xlg;
 }
 
+.nickname{
+    font-weight: bold;
+}
+
 .no-decoration{
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+}
+
+.p-md{
+    padding: $s-md;
 }

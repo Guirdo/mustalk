@@ -6,7 +6,7 @@ function AuthLayout({ title, children }) {
          <Head>
              <title>MusTalk{title && ` - ${title}`}</title>
          </Head>
-            <div className="container auth">
+            <div className="container auth p-md">
                 {children}
             </div>
         </>

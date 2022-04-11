@@ -15,3 +15,40 @@ input {
   border-radius: 8px;
   border: 2px solid lighten($primary, 30%);
 }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  overflow: auto;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: lighten($primary, 10%);
+  color: $white;
+
+
+
+  & ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  & li {
+    list-style: none;
+    margin: $s-sm;
+    font-size: $f-md;
+
+    & a {
+      color: $white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}

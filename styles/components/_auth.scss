@@ -1,0 +1,53 @@
+.auth-section {
+    @extend .container;
+    justify-content: space-between;
+    height: 100vh;
+    align-items: center;
+    text-align: center;
+    padding: $s-md;
+
+    & div {
+        width: 100%;
+
+        & * {
+            margin-bottom: $s-md;
+        }
+
+        @include tablet-screen {
+            width: 30%;
+        }
+
+        @include desktop-screen {
+            width: 30%;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        input {
+            margin-bottom: $s-sm;
+        }
+
+        @include tablet-screen {
+            width: 30%;
+        }
+    }
+}
+
+.auth__title {
+    font-size: $f-xlg;
+    color: $primary;
+}
+
+.auth__subtitle{
+    font-weight: normal;
+}
+
+.auth__link-container{
+    @extend container !optional; //TODO Check if this is correct
+}

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import Post from "../components/post/Post";
+import FloattingButton from "../components/utils/FloattingButton";
 import Navbar from "../components/utils/Navbar";
 
 function HomeScreen() {
@@ -12,6 +14,7 @@ function HomeScreen() {
                 <Post />
                 <Post />
             </main>
+            <FloattingButton />
         </div>
     );
 }

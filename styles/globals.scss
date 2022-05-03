@@ -2,6 +2,15 @@
 @import "tools";
 @import "generic";
 @import "elements";
-@import "objects";
+
+//Objects
+@import "objects/container";
+@import "objects/buttons";
+@import "objects/post";
+@import "objects/link";
+
+//Components
+@import "components/auth";
+
 @import "components";
 @import "utilities";

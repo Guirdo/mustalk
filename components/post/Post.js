@@ -8,8 +8,8 @@ function Post() {
             <div>
                 <Image
                     src="/icons/user.png"
-                    height={50}
-                    width={50}
+                    height={40}
+                    width={40}
                     alt="profile"
                 />
             </div>

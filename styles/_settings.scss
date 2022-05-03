@@ -24,12 +24,13 @@ $base-colors: ("primary", "secondary","white");
 
 // ---------- FONT
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap');
-$font: 'Inconsolata',
-monospace;
+$font: 'Inconsolata',monospace;
+
 //sizes
+$f-xs: 12px;
 $f-sm: 16px;
 $f-md: 20px;
-$f-lg: 40px;
+$f-lg: 28px;
 $f-xlg: 52px;
 
 //Space
@@ -37,6 +38,7 @@ $s-xs: 4px;
 $s-sm: 12px;
 $s-md: 20px;
 $s-lg: 28px;
+$s-xlg: 52px;
 
 //Breakpoint
 $sm-screen: 600px;

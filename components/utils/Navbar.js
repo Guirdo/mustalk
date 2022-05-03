@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function Navbar() {
@@ -6,7 +7,12 @@ function Navbar() {
             <nav>
                 <ul>
                     <li>
-                        <span>X</span>
+                        <Image
+                            src="/icons/user.png"
+                            alt="user"
+                            width={32}
+                            height={32}
+                        />
                     </li>
                     <li>
                         <Link href="/home">Home</Link>

@@ -1,0 +1,44 @@
+.btn {
+    padding: $s-sm;
+    font-size: $f-md;
+    color: $white;
+    border: none;
+    border-radius: $s-sm;
+    font-size: $f-md;
+    font-weight: bold;
+  
+    &--block {
+      width: 100%;
+    }
+  
+    &--floatting {
+      position: fixed;
+      width: $s-xlg;
+      height: $s-xlg;
+      border-radius: 50%;
+      background: $primary;
+      color: $white;
+      right: $s-md;
+      bottom: $s-md;
+      font-size: $f-lg;
+      text-align: center;
+  
+      @include mobile-screen {
+        visibility: initial;
+      }
+  
+      @include tablet-screen {
+        visibility: hidden;
+      }
+  
+      @include desktop-screen {
+        visibility: hidden;
+      }
+    }
+  
+    @each $colorName in $base-colors {
+      &--#{$colorName} {
+        background: var(--#{$colorName});
+      }
+    }
+  }

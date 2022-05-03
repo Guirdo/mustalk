@@ -1,18 +1,18 @@
 //Mixin and function
-@mixin sm-screen {
-    @media screen and (max-width: $sm-screen){
+@mixin mobile-screen{
+    @media screen and (max-width: 767px) {
         @content;
     }
 }
 
-@mixin md-screen {
-    @media screen and (min-width: $md-screen){
+@mixin tablet-screen{
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
         @content;
     }
 }
 
-@mixin lg-screen {
-    @media screen and (min-width: $lg-screen){
+@mixin desktop-screen{
+    @media screen and (min-width: 1024px) {
         @content;
     }
 }

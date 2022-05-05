@@ -13,17 +13,19 @@ function LoginScreen() {
             <form>
 
                 <input
+                className="auth__input"
                     type="email"
                     placeholder="Email"
                 />
 
                 <input
+                className="auth__input"
                     type="password"
                     placeholder="Password"
                 />
 
                 <button
-                    className="btn btn-primary btn-block"
+                    className="btn btn--primary btn--block"
                 >
                     Log In
                 </button>

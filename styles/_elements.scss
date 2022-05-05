@@ -12,7 +12,7 @@ input {
   font-size: $f-md;
   padding: $s-sm;
   width: 100%;
-  border-radius: 8px;
+  border-radius: $s-sm;
   border: 2px solid lighten($primary, 30%);
 }
 

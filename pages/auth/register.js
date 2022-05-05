@@ -10,29 +10,33 @@ function RegisterScreen() {
                 <Link href="/"><a className="link--no-decoration">MusTalk</a></Link>
             </h1>
 
-            <form>
+            <form className="form">
                 <input
+                    className="auth__input"
                     type="email"
                     placeholder="Email"
                 />
 
                 <input
+                    className="auth__input"
                     type="text"
                     placeholder="Username"
                 />
 
                 <input
+                    className="auth__input"
                     type="password"
                     placeholder="Password"
                 />
 
                 <input
+                    className="auth__input"
                     type="password"
                     placeholder="Confirm Password"
                 />
 
                 <button
-                    className="btn btn-primary btn-block"
+                    className="btn btn--primary btn--block"
                     type="submit"
                 >
                     Sign up

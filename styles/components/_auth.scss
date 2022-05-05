@@ -21,22 +21,6 @@
             width: 30%;
         }
     }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-
-        input {
-            margin-bottom: $s-sm;
-        }
-
-        @include tablet-screen {
-            width: 30%;
-        }
-    }
 }
 
 .auth__title {
@@ -46,6 +30,10 @@
 
 .auth__subtitle{
     font-weight: normal;
+}
+
+.auth__input{
+    margin-bottom: $s-sm;
 }
 
 .auth__link-container{

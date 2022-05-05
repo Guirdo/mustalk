@@ -1,0 +1,15 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    @include tablet-screen {
+        width: 50%;
+    }
+
+    @include desktop-screen {
+        width: 30%;
+    }
+}

@@ -9,7 +9,7 @@ a {
 }
 
 input {
-  font-size: $f-md;
+  font-size: $f-sm;
   padding: $s-sm;
   width: 100%;
   border-radius: $s-sm;
@@ -23,38 +23,10 @@ header {
   overflow: auto;
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background: lighten($primary, 10%);
-  color: $white;
-
-  & ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  & li {
-    list-style: none;
-    margin: $s-sm;
-    font-size: $f-md;
-
-    & a {
-      color: $white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  }
-}
-
 textarea{
-  font-size: $f-md;
+  font-size: $f-sm;
   padding: $s-sm;
   width: 100%;
   border-radius: $s-sm;
-  border: $s-xs solid lighten($primary, 30%);
+  border: 2px solid lighten($primary, 30%);
 }

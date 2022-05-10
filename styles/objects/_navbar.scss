@@ -1,0 +1,65 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: lighten($primary, 10%);
+    color: $white;
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__user-image {
+        margin-left: $s-sm;
+    }
+
+    &__item {
+        list-style: none;
+        margin: $s-sm;
+        font-size: $f-md;
+
+        @include tablet-screen {
+            display: none;
+        }
+
+        @include desktop-screen {
+            display: none;
+        }
+    }
+
+    &__brand {
+        margin: $s-sm;
+        font-size: $f-md;
+        display: none;
+
+        @include tablet-screen {
+            display: block;
+        }
+
+        @include desktop-screen {
+            display: block;
+        }
+    }
+
+    &__link {
+        color: $white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    @include tablet-screen {
+        &__user-image{
+            display: none;
+        }
+    }
+
+    @include desktop-screen {
+        &__user-image{
+            display: none;
+        }
+    }
+}

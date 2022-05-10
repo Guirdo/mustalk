@@ -2,20 +2,39 @@
     display: grid;
     grid-template-columns: auto 1fr;
     padding: $s-sm;
+    width: 100%;
   
     border-bottom: 1px solid gray;
   
-    &>div:nth-child(2) {
-      margin-left: $s-sm;
+    &-content {
+      margin: $s-xs;
+    }
+
+    &__description{
+      resize: none;
+    }
+
+    &__song-input{
+      margin-bottom: $s-sm;
     }
   
-    & .content {
-      margin-top: $s-xs;
-    }
-  
-    & .actions {
+    &-actions {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
+      &--right{
+        justify-content: end;
+      }
     }
+
+    &--inactive{
+      display: none;
+    }
+
+    &__char-count{
+      text-align: right;
+      width: 100%;
+      margin: $s-sm 0;
+  }
   }

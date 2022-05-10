@@ -41,4 +41,15 @@
         background: var(--#{$colorName});
       }
     }
+
+    @each $colorName in $base-colors {
+      &--#{$colorName}-inline {
+        background: white;
+        color: var(--#{$colorName});
+        
+        &:hover {
+          background-color: darken(rgb(241, 241, 241), 1%);
+        }
+      }
+    }
   }

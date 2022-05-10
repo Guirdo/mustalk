@@ -4,9 +4,9 @@ import Link from "next/link";
 function Navbar() {
     return (
         <header>
-            <nav>
-                <ul>
-                    <li>
+            <nav className="navbar">
+                <ul className="navbar__list">
+                    <li className="navbar__user-image">
                         <Image
                             src="/icons/user.png"
                             alt="user"
@@ -14,8 +14,21 @@ function Navbar() {
                             height={32}
                         />
                     </li>
-                    <li>
-                        <Link href="/home">Home</Link>
+
+                    <li className="navbar__brand">
+                        <Link href="/home">
+                            <a className="navbar__link">
+                                MusTalk
+                            </a>
+                        </Link>
+                    </li>
+
+                    <li className="navbar__item">
+                        <Link href="/home">
+                            <a className="navbar__link">
+                                Home
+                            </a>
+                        </Link>
                     </li>
 
                 </ul>

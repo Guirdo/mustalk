@@ -1,0 +1,37 @@
+.home-section {
+    display: flex;
+    justify-content: center;
+}
+
+.home-aside {
+    display: none;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding-inline: $s-md;
+
+    @include tablet-screen {
+        display: flex;
+        width: 30%;
+    }
+
+    @include desktop-screen {
+        display: flex;
+        width: 30%;
+        padding-inline: $s-xlg;
+    }
+}
+
+.home-main {
+    @include tablet-screen{
+        border-inline: 1px solid gray;
+    }
+
+    @include desktop-screen{
+        border-inline: 1px solid gray;
+    }
+}
+
+.home-compose {
+    width: 100%;
+}

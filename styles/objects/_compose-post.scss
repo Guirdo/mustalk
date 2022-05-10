@@ -1,0 +1,9 @@
+.compose-post{
+    display: none;
+    padding: $s-sm;
+    border-bottom: 1px solid gray;
+
+    @include tablet-screen{
+        display: flex;
+    }
+}

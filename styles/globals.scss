@@ -9,9 +9,12 @@
 @import "objects/post";
 @import "objects/link";
 @import "objects/form";
+@import "objects/navbar";
+@import "objects/compose-post";
 
 //Components
 @import "components/auth";
+@import "components/home";
 
 @import "components";
 @import "utilities";

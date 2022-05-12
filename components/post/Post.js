@@ -34,7 +34,7 @@ function Post() {
                         alt="music"
                     />
                 </div>
-                <div className="actions">
+                <div className="post__actions">
                     <LikeBtn />
                     <SaveBtn />
                 </div>

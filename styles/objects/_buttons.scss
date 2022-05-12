@@ -6,6 +6,9 @@
     border-radius: $s-sm;
     font-size: $f-md;
     font-weight: bold;
+
+    //For anchor tags
+    text-decoration: none;
   
     &--block {
       width: 100%;

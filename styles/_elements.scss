@@ -23,7 +23,12 @@ header {
   overflow: auto;
 }
 
-textarea{
+main {
+  display: flex;
+  justify-content: center;
+}
+
+textarea {
   font-size: $f-sm;
   padding: $s-sm;
   width: 100%;

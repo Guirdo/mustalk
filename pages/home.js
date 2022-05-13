@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import Compose from "../components/post/Compose";
 import Post from "../components/post/Post";
-import FloattingButton from "../components/utils/FloattingButton";
-import Navbar from "../components/utils/Navbar";
 import Link from 'next/link';
+import Layout from '../components/Layout';
 
 function HomeScreen() {
     const [userName, setUserName] = useState(null)
@@ -41,44 +40,22 @@ function HomeScreen() {
     }
 
     return (
-        <>
-            <Navbar />
+        <Layout
+            title="Home"
+            userName={userName}
+        >
+            <div className='home-main'>
+                <div className="home-compose">
+                    <Compose />
+                </div>
 
-            <div className="home-section">
-                <aside className="home-aside">
-                    <button
-                        className="btn btn--primary-inline"
-                    >
-                        Home
-                    </button>
-                    <Link
-                        href={`/profile/${userName}`}
-                    >
-                        <a className="btn btn--primary-inline">
-                        Profile 
-                        </a>
-                    </Link>
-                    <button
-                        className="btn btn--primary-inline"
-                        onClick={() => supabase.auth.signOut()}
-                    >
-                        Log Out
-                    </button>
-                </aside>
-
-                <main className="home-main">
-                    <div className="home-compose">
-                        <Compose />
-                    </div>
-
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                </main>
+                <Post />
+                <Post />
+                <Post />
+                <Post />
+                <Post />
             </div>
-        </>
+        </Layout>
     );
 }
 

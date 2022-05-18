@@ -16,7 +16,7 @@ async function getProfile(id) {
         return data
       }
     } catch (error) {
-      console.log(error)
+      
     }
   }
 

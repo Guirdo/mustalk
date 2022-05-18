@@ -30,3 +30,13 @@
 .home-compose {
     width: 100%;
 }
+
+.home-unauthenticated {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: $s-md auto;
+    padding: $s-md;
+    border: 2px dotted $primary;
+}

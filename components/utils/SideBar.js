@@ -6,7 +6,7 @@ import { supabase } from "../../utils/supabaseClient";
 
 function SideBar() {
 
-    const { user } = useSelector(state => state.auth) 
+    const { user } = useSelector(state => state.auth)
     const dispatch = useDispatch()
     const { push } = useRouter()
 
@@ -23,19 +23,33 @@ function SideBar() {
             >
                 Home
             </button>
-            <Link
-                href={`/profile/${user?.username}`}
-            >
-                <a className="btn btn--primary-inline">
-                    Profile
-                </a>
-            </Link>
-            <button
-                className="btn btn--primary-inline"
-                onClick={handleLogout}
-            >
-                Log Out
-            </button>
+            {
+                user ? (
+                    <>
+                        <Link
+                            href={`/profile/${user?.username}`}
+                        >
+                            <a className="btn btn--primary-inline">
+                                Profile
+                            </a>
+                        </Link>
+                        <button
+                            className="btn btn--primary-inline"
+                            onClick={handleLogout}
+                        >
+                            Log Out
+                        </button>
+                    </>
+                ) : (
+                    <Link
+                        href={`/`}
+                    >
+                        <a className="btn btn--primary-inline">
+                            Login
+                        </a>
+                    </Link>
+                )
+            }
         </aside>
     );
 }

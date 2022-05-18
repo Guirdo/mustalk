@@ -1,12 +1,11 @@
-async function getProfile() {
-    try {
-      setLoading(true)
-      const user = supabase.auth.user()
+import { supabase } from "./supabaseClient"
 
+async function getProfile(id) {
+    try {
       let { data, error, status } = await supabase
         .from('profiles')
         .select(`username, website, avatar_url`)
-        .eq('id', user.id)
+        .eq('id', id)
         .single()
 
       if (error && status !== 406) {
@@ -14,14 +13,10 @@ async function getProfile() {
       }
 
       if (data) {
-        setUsername(data.username)
-        setWebsite(data.website)
-        setAvatarUrl(data.avatar_url)
+        return data
       }
     } catch (error) {
-      alert(error.message)
-    } finally {
-      setLoading(false)
+      console.log(error)
     }
   }
 

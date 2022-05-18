@@ -1,7 +1,21 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthenticated } from "../../features/auth/authSlice";
 import { supabase } from "../../utils/supabaseClient";
 
-function SideBar({userName}) {
+function SideBar() {
+
+    const { user } = useSelector(state => state.auth) 
+    const dispatch = useDispatch()
+    const { push } = useRouter()
+
+    const handleLogout = () => {
+        dispatch(setAuthenticated(false))
+        supabase.auth.signOut()
+        push('/')
+    }
+
     return (
         <aside className="home-aside">
             <button
@@ -10,7 +24,7 @@ function SideBar({userName}) {
                 Home
             </button>
             <Link
-                href={`/profile/${userName}`}
+                href={`/profile/${user?.username}`}
             >
                 <a className="btn btn--primary-inline">
                     Profile
@@ -18,7 +32,7 @@ function SideBar({userName}) {
             </Link>
             <button
                 className="btn btn--primary-inline"
-                onClick={() => supabase.auth.signOut()}
+                onClick={handleLogout}
             >
                 Log Out
             </button>

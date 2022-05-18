@@ -1,13 +1,16 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Link from "next/link";
 import AuthLayout from "../components/AuthLayout";
 import { useForm } from "../hooks/useForm";
 import { supabase } from '../utils/supabaseClient';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { getUser, setAuthenticated } from '../features/auth/authSlice';
 
 export default function Home() {
 
-  const [session, setSession] = useState(null)
+  const dispatch = useDispatch()
+  const [user, setUser] = useState(supabase.auth.user() || null)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
@@ -18,13 +21,15 @@ export default function Home() {
   const { email } = formValues;
 
   useEffect(() => {
-    setSession(supabase.auth.session())
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-      session && router.push('/home')
+    if (user) {
+      dispatch(setAuthenticated(true))
+      dispatch(getUser())
+      router.push('/home')
+    }
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      setUser(supabase.auth.user() || null)
     })
-  }, [])
+  })
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -60,11 +65,11 @@ export default function Home() {
         <button
           className="btn btn--primary btn--block"
           type="submit"
+          disabled={loading}
         >
           {loading ? "Loading..." : "Log In"}
         </button>
       </form>
-
 
       <p>You{"'"}ll receive a ✨magic link✨</p>
       <div>

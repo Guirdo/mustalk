@@ -1,6 +1,10 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
 import Post from "../../components/post/Post";
 import Profile from "../../components/profile/Profile";
+import { getUser, setAuthenticated } from "../../features/auth/authSlice";
 import { supabase } from "../../utils/supabaseClient";
 
 export const getStaticPaths = async () => {
@@ -25,40 +29,41 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
     const { data } = await supabase
         .from('profiles')
-        .select(`id, username`)
+        .select(`id, username,biography,website`)
         .eq('username', params.userName)
         .single()
 
-    const user = JSON.stringify(data)
-
-    /*     if (!items.length) {
-            return {
-                redirect: {
-                    destination: '/blog',
-                    permanent: false,
-                }
-            }
-        } */
+    const profile = JSON.stringify(data)
 
     return {
         props: {
-            user
+            profile
         }
     }
 }
 
-function UserPage({ slug, user }) {
+function UserPage({ profile }) {
+    const { username } = JSON.parse(profile)
+    const dispatch = useDispatch()
+    const [user, setUser] = useState(supabase.auth.user() || null)
 
-    const { id, username } = JSON.parse(user)
+    useEffect(() => {
+        if (user) {
+            dispatch(setAuthenticated(true))
+            dispatch(getUser())
+        }
+        supabase.auth.onAuthStateChange(async (event, session) => {
+            setUser(supabase.auth.user() || null)
+        })
+    })
 
     return (
         <Layout
             title={username}
-            userName={username}
         >
 
             <div className='home-main'>
-                <Profile userName={username} />
+                <Profile profile={profile} />
 
                 <Post />
                 <Post />

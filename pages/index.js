@@ -11,8 +11,8 @@ export default function Home() {
 
   const dispatch = useDispatch()
   const [user, setUser] = useState(supabase.auth.user() || null)
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const [loading, setLoading] = useState(false) 
 
   const [formValues, handleInputChange] = useForm({
     email: ""

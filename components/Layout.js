@@ -1,14 +1,16 @@
 import Head from "next/head";
+import { useSelector } from "react-redux";
 import Navbar from "./utils/Navbar";
 import SideBar from "./utils/SideBar";
 
-function Layout({ title,userName,children }) {
+function Layout({ title,children }) {
+
+    const { user } = useSelector(state => state.auth);
+
     return (
         <>
 
             <Head>
-
-
                 <title>{title}</title>
             </Head>
 
@@ -17,7 +19,7 @@ function Layout({ title,userName,children }) {
             </header>
 
             <main>
-                <SideBar userName={userName}/>
+                <SideBar />
                 { children }
             </main>
         </>

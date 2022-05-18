@@ -27,7 +27,6 @@ const authSlice = createSlice({
     extraReducers: {
         [getUser.fulfilled]: (state, action) => {
             state.user = action.payload
-            console.log(action.payload)
         },
         [getUser.rejected]: (state, action) => {
             state.user = null

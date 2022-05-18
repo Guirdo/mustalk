@@ -1,15 +1,11 @@
 import Head from "next/head";
-import { useSelector } from "react-redux";
 import Navbar from "./utils/Navbar";
 import SideBar from "./utils/SideBar";
 
-function Layout({ title,children }) {
-
-    const { user } = useSelector(state => state.auth);
+function Layout({ title, children }) {
 
     return (
         <>
-
             <Head>
                 <title>{title}</title>
             </Head>
@@ -20,7 +16,9 @@ function Layout({ title,children }) {
 
             <main>
                 <SideBar />
-                { children }
+                <div className='home-main'>
+                    {children}
+                </div>
             </main>
         </>
     );

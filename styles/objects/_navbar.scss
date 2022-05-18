@@ -1,16 +1,16 @@
 .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
     background: lighten($primary, 10%);
     color: $white;
+    margin: 0;
+    padding: $s-sm;
 
     &__list {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-wrap: wrap;
         align-items: center;
+        list-style: none;
+        padding: $s-xs;
     }
 
     &__user-image {
@@ -18,9 +18,11 @@
     }
 
     &__item {
-        list-style: none;
+        display: none;
         margin: $s-sm;
         font-size: $f-md;
+        font-weight: bold;
+        text-align: center;
 
         @include tablet-screen {
             display: none;
@@ -32,16 +34,25 @@
     }
 
     &__brand {
-        margin: $s-sm;
         font-size: $f-md;
-        display: none;
+        margin-right: auto;
+    }
+
+    &__item--active {
+        display: block;
+        width: 100%;
+        order: 2;
+    }
+
+    &__toggle {
+        order: 1;
 
         @include tablet-screen {
-            display: block;
+            display: none;
         }
 
         @include desktop-screen {
-            display: block;
+            display: none;
         }
     }
 
@@ -49,17 +60,5 @@
         color: $white;
         text-decoration: none;
         font-weight: bold;
-    }
-
-    @include tablet-screen {
-        &__user-image{
-            display: none;
-        }
-    }
-
-    @include desktop-screen {
-        &__user-image{
-            display: none;
-        }
     }
 }

@@ -18,11 +18,11 @@
 }
 
 .home-main {
-    @include tablet-screen{
+    @include tablet-screen {
         border-inline: 1px solid gray;
     }
 
-    @include desktop-screen{
+    @include desktop-screen {
         border-inline: 1px solid gray;
     }
 }

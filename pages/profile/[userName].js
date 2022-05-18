@@ -61,17 +61,13 @@ function UserPage({ profile }) {
         <Layout
             title={username}
         >
+            <Profile profile={profile} />
 
-            <div className='home-main'>
-                <Profile profile={profile} />
-
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-            </div>
-
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
         </Layout>
     );
 }

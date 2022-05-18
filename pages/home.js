@@ -12,25 +12,23 @@ function HomeScreen() {
         <Layout
             title="Home"
         >
-            <div className='home-main'>
-                <div className="home-compose">
-                    {
-                        isAuthenticated ? (
-                            <Compose />
-                        ) : (
-                            <div className="home-unauthenticated">
-                                <p>Please <Link href="/">Login</Link> to post</p>
-                            </div>
-                        )
-                    }
-                </div>
-
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+            <div className="home-compose">
+                {
+                    isAuthenticated ? (
+                        <Compose />
+                    ) : (
+                        <div className="home-unauthenticated">
+                            <p>Please <Link href="/">Login</Link> to post</p>
+                        </div>
+                    )
+                }
             </div>
+
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
         </Layout>
     );
 }

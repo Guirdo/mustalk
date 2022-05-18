@@ -1,0 +1,27 @@
+.edit-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $s-md;
+
+    border-bottom: 1px solid gray;
+
+    &__title{
+        color: $primary;
+        margin-bottom: $s-md;
+    }
+
+    &__photo{
+        margin-bottom: $s-md;
+    }
+
+    &__input{
+        margin-bottom: $s-sm;
+    }
+
+    &__textarea{
+        margin-bottom: $s-sm;
+    }
+
+}

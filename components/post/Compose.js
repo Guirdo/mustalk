@@ -2,22 +2,43 @@ import { useState } from 'react'
 import classNames from "classnames";
 import Image from "next/image";
 import { useForm } from '../../hooks/useForm';
+import { useSelector } from 'react-redux';
+import { supabase } from '../../utils/supabaseClient';
 
 function Compose() {
-    const [isInactive, setIsInactive] = useState(false)
-    const [formValues,handleInputChange] = useForm({
+    const { user } = useSelector(state => state.auth);
+    const [isInactive, setIsInactive] = useState(true)
+    const [formValues, handleInputChange] = useForm({
         description: '',
-        songLink: ''
+        songlink: ''
     })
 
-    const { description,songLink } = formValues
+    const { description, songlink } = formValues
 
-    const handleFocus = (e) => {
+    const handleFocus = () => {
         setIsInactive(false)
     }
 
-    const handlePost = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
 
+        try {
+            const { data, error } = await supabase
+                .from('post')
+                .insert({
+                    description,
+                    songlink,
+                    author: user.id,
+                })
+
+            if (error) {
+                throw error
+            }
+
+            alert('Post created successfully')
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     return (
@@ -33,7 +54,10 @@ function Compose() {
                     width={40}
                 />
             </figure>
-            <div className="post-content">
+            <form
+                className="post-content"
+                onSubmit={handleSubmit}
+            >
                 <textarea
                     className="post__description"
                     placeholder="What are you listening to?"
@@ -42,25 +66,24 @@ function Compose() {
                     value={description}
                     onChange={handleInputChange}
                 />
-                <div className={classNames('post__char-count', { 'post--inactive': isInactive })} /* "post__char-count post--inactive" */>0/500</div>
+                <div className={classNames('post__char-count', { 'post--inactive': isInactive })} >0/500</div>
                 <input
                     className={classNames('post__song-input', { 'post--inactive': isInactive })}
                     type="text"
                     placeholder="Enter the song's link"
-                    name="songLink"
-                    value={songLink}
+                    name="songlink"
+                    value={songlink}
                     onChange={handleInputChange}
                 />
 
-                <div className={classNames('post-actions','post-actions--right', { 'post--inactive': isInactive })}>
-                    <button 
+                <div className={classNames('post-actions', 'post-actions--right', { 'post--inactive': isInactive })}>
+                    <button
                         className="btn btn--primary"
-                        onClick={handlePost}
                     >
                         Post
                     </button>
                 </div>
-            </div>
+            </form>
 
         </div>
     );

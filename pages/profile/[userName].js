@@ -12,7 +12,7 @@ export const getStaticPaths = async () => {
 
     const { data } = await supabase
         .from('profiles')
-        .select(`username`)
+        .select(`id,username`)
 
     const paths = data.map(user => ({
         params: {
@@ -27,23 +27,28 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params }) => {
-    const { data } = await supabase
+    const { data:profile } = await supabase
         .from('profiles')
         .select(`id, username,biography,website`)
         .eq('username', params.userName)
         .single()
 
-    const profile = JSON.stringify(data)
+    const { data:posts } = await supabase
+        .from('post')
+        .select(`id,description,songlink,created_at,author`)
+        .eq('author', profile.id)
+        .order('created_at', {ascending: false})
 
     return {
         props: {
-            profile
+            profile,
+            posts
         }
     }
 }
 
-function UserPage({ profile }) {
-    const { username } = JSON.parse(profile)
+function UserPage({ profile, posts }) {
+    const { username } = profile
     const dispatch = useDispatch()
     const [user, setUser] = useState(supabase.auth.user() || null)
 
@@ -63,11 +68,15 @@ function UserPage({ profile }) {
         >
             <Profile profile={profile} />
 
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            {
+                posts?.map(post => (
+                    <Post
+                        key={post.id}
+                        post={post}
+                        username={username}
+                    />
+                ))
+            }
         </Layout>
     );
 }

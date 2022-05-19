@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 function Profile({ profile }) {
-    const { id,username, biography,website} = JSON.parse(profile);
+    const { id,username, biography,website} = profile
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();
 

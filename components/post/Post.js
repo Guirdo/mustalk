@@ -1,8 +1,12 @@
+import moment from "moment";
 import Image from "next/image";
 import LikeBtn from "../utils/LikeBtn";
 import SaveBtn from "../utils/SaveBtn";
 
-function Post() {
+function Post({ post,username }) {
+
+    const { id,author, description, songlink, created_at } = post
+
     return (
         <article className="post">
             <div>
@@ -15,15 +19,13 @@ function Post() {
             </div>
             <div>
                 <div>
-                    <span className="nickname">Seb Méndez {' '}</span>
-                    <span className="username">@seb_mendez</span>
+                    <span className="nickname">{ username } {' '}</span>
                     <span>{' - '}</span>
-                    <span>1h</span>
+                    <span>{moment(created_at).format('MMMM/DD/YY hh:mm')}</span>
                 </div>
                 <div className="content">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quisquam, quidem.
+                        {description}
                     </p>
                 </div>
                 <div className="music-card">
@@ -33,6 +35,7 @@ function Post() {
                         width={300}
                         alt="music"
                     />
+                    <p>{songlink}</p>
                 </div>
                 <div className="post__actions">
                     <LikeBtn />

@@ -20,10 +20,12 @@
 .home-main {
     @include tablet-screen {
         border-inline: 1px solid gray;
+        width: 70%;
     }
 
     @include desktop-screen {
         border-inline: 1px solid gray;
+        width: 50%;
     }
 }
 

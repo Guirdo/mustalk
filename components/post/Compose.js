@@ -8,7 +8,7 @@ import { supabase } from '../../utils/supabaseClient';
 function Compose() {
     const { user } = useSelector(state => state.auth);
     const [isInactive, setIsInactive] = useState(true)
-    const [formValues, handleInputChange] = useForm({
+    const [formValues, handleInputChange,reset] = useForm({
         description: '',
         songlink: ''
     })
@@ -23,7 +23,7 @@ function Compose() {
         e.preventDefault()
 
         try {
-            const { data, error } = await supabase
+            const { _, error } = await supabase
                 .from('post')
                 .insert({
                     description,
@@ -35,6 +35,7 @@ function Compose() {
                 throw error
             }
 
+            reset()
             alert('Post created successfully')
         } catch (e) {
             console.log(e)

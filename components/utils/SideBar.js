@@ -18,11 +18,6 @@ function SideBar() {
 
     return (
         <aside className="home-aside open">
-            <button
-                className="btn btn--primary-inline"
-            >
-                Home
-            </button>
             {
                 user ? (
                     <>

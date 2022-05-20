@@ -36,6 +36,12 @@
     margin-bottom: $s-sm;
 }
 
+.auth__message{
+    color: $primary;
+    font-weight: bold;
+    font-size: $f-md;
+}
+
 .auth__link-container{
     @extend container !optional; //TODO Check if this is correct
 }

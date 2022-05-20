@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import classNames from "classnames";
 import Image from "next/image";
-import { useForm } from '../../hooks/useForm';
-import { useSelector } from 'react-redux';
-import { supabase } from '../../utils/supabaseClient';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import validator from 'validator'
+import { supabase } from '../../utils/supabaseClient';
+import { useForm } from '../../hooks/useForm';
 
 function Compose() {
+    const [count, setCount] = useState(0)
     const { user } = useSelector(state => state.auth);
     const [isInactive, setIsInactive] = useState(true)
     const { push } = useRouter()
-    const [formValues, handleInputChange,reset] = useForm({
+    const [formValues, handleInputChange, reset] = useForm({
         description: '',
         songlink: ''
     })
@@ -25,23 +27,43 @@ function Compose() {
         e.preventDefault()
 
         try {
-            const { _, error } = await supabase
-                .from('post')
-                .insert({
-                    description,
-                    songlink,
-                    author: user.id,
-                })
+            if (isFormValid()) {
+                const { _, error } = await supabase
+                    .from('post')
+                    .insert({
+                        description,
+                        songlink,
+                        author: user.id,
+                    })
 
-            if (error) {
-                throw error
+                if (error) {
+                    throw error
+                }
+
+                reset()
+                push(window.location.pathname)
+            }else{
+                alert('Please fill out all fields')
             }
-
-            reset()
-            push(window.location.pathname)
         } catch (e) {
             console.log(e)
         }
+    }
+
+    const handleChange = (e) => {
+        setCount(e.target.value.length)
+
+        handleInputChange(e)
+    }
+
+    const isFormValid = () => {
+        if (validator.isEmpty(description)) {
+            return false
+        } else if (!validator.isURL(songlink)) {
+            return false
+        }
+
+        return true
     }
 
     return (
@@ -67,9 +89,12 @@ function Compose() {
                     rows={4}
                     name="description"
                     value={description}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    maxLength={400}
                 />
-                <div className={classNames('post__char-count', { 'post--inactive': isInactive })} >0/500</div>
+                <div className={classNames('post__char-count', { 'post--inactive': isInactive })} >
+                    {count}/400
+                </div>
                 <input
                     className={classNames('post__song-input', { 'post--inactive': isInactive })}
                     type="text"
@@ -77,11 +102,13 @@ function Compose() {
                     name="songlink"
                     value={songlink}
                     onChange={handleInputChange}
+                    autoComplete="off"
                 />
 
                 <div className={classNames('post-actions', 'post-actions--right', { 'post--inactive': isInactive })}>
                     <button
                         className="btn btn--primary"
+                        type='submit'
                     >
                         Post
                     </button>

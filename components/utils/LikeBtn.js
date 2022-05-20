@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function LikeBtn() {
     return (
-        <div className="action">
+        <div className="post-action">
             <span>
                 <Image
                     src="/icons/heart.png"
@@ -11,7 +11,9 @@ function LikeBtn() {
                     alt="heart"
                 />
             </span>
-            <span>
+            <span
+                className="post-action__text"
+            >
                 Like
             </span>
         </div>

@@ -1,40 +1,67 @@
 .post {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    padding: $s-sm;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: $s-sm;
+  padding: $s-sm;
+  width: 100%;
+
+  border-bottom: 1px solid gray;
+
+  &__user {
+    font-weight: bold;
+    text-decoration: underline;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  &-content {
+    margin: $s-xs;
+  }
+
+  &__description {
+    resize: none;
+  }
+
+  &__song-input {
+    margin-bottom: $s-sm;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &--right {
+      justify-content: end;
+    }
+  }
+
+  &-action {
+    display: flex;
+    margin-right: $s-sm;
+    align-items: center;
+    padding: $s-xs;
+    border-radius: $s-xs;
+
+    &:hover {
+      cursor: pointer;
+      background-color: lighten(gray, 40%);
+    }
+
+    &__text {
+      margin-left: $s-sm;
+    }
+  }
+
+  &--inactive {
+    display: none;
+  }
+
+  &__char-count {
+    text-align: right;
     width: 100%;
-  
-    border-bottom: 1px solid gray;
-  
-    &-content {
-      margin: $s-xs;
-    }
-
-    &__description{
-      resize: none;
-    }
-
-    &__song-input{
-      margin-bottom: $s-sm;
-    }
-  
-    &__actions {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      &--right{
-        justify-content: end;
-      }
-    }
-
-    &--inactive{
-      display: none;
-    }
-
-    &__char-count{
-      text-align: right;
-      width: 100%;
-      margin: $s-sm 0;
+    margin: $s-sm 0;
   }
-  }
+}

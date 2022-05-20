@@ -4,10 +4,12 @@ import Image from "next/image";
 import { useForm } from '../../hooks/useForm';
 import { useSelector } from 'react-redux';
 import { supabase } from '../../utils/supabaseClient';
+import { useRouter } from 'next/router';
 
 function Compose() {
     const { user } = useSelector(state => state.auth);
     const [isInactive, setIsInactive] = useState(true)
+    const { push } = useRouter()
     const [formValues, handleInputChange,reset] = useForm({
         description: '',
         songlink: ''
@@ -36,7 +38,7 @@ function Compose() {
             }
 
             reset()
-            alert('Post created successfully')
+            push(window.location.pathname)
         } catch (e) {
             console.log(e)
         }

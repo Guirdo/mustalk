@@ -11,6 +11,7 @@ export async function getStaticProps() {
         .select(`
             id,description,songlink,created_at,author,
             profiles(
+                id,
                 username
             )
         `)

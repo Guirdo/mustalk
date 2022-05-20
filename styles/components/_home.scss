@@ -18,6 +18,8 @@
 }
 
 .home-main {
+    width: 100%;
+
     @include tablet-screen {
         border-inline: 1px solid gray;
         width: 70%;

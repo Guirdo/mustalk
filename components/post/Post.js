@@ -1,11 +1,15 @@
 import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
+import { useSelector } from "react-redux";
+import DeleteBtn from "../utils/DeleteBtn";
 import LikeBtn from "../utils/LikeBtn";
 import SaveBtn from "../utils/SaveBtn";
 
-function Post({ post,username }) {
+function Post({ post, username }) {
 
-    const { id,author, description, songlink, created_at } = post
+    const { id, author, description, songlink, created_at } = post
+    const { user } = useSelector(state => state.auth)
 
     return (
         <article className="post">
@@ -19,27 +23,36 @@ function Post({ post,username }) {
             </div>
             <div>
                 <div>
-                    <span className="nickname">{ username } {' '}</span>
-                    <span>{' - '}</span>
+                    <Link href={`/profile/${username}`} passHref><span className="post__user">{username}</span></Link>
+                    <span>{' '}</span>
                     <span>{moment(created_at).format('MMMM/DD/YY hh:mm')}</span>
                 </div>
-                <div className="content">
+                <div className="post-content">
                     <p>
                         {description}
                     </p>
                 </div>
                 <div className="music-card">
-                    <Image 
-                        src="https://picsum.photos/300/200"
-                        height={200}
-                        width={300}
-                        alt="music"
-                    />
-                    <p>{songlink}</p>
+                    <p>
+                        <a
+                            href={songlink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {songlink}
+                        </a>
+                    </p>
                 </div>
                 <div className="post__actions">
                     <LikeBtn />
                     <SaveBtn />
+                    {
+                        author === user?.id && (
+                            <DeleteBtn
+                                id={id}
+                            />
+                        )
+                    }
                 </div>
             </div>
         </article>

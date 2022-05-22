@@ -10,6 +10,10 @@
     //For anchor tags
     text-decoration: none;
 
+    &--small{
+        font-size: $f-sm;
+    }
+
     &:hover{
       cursor: pointer;
     }

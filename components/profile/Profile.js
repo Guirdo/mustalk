@@ -31,7 +31,7 @@ function Profile({ profile }) {
             {
                 user?.id === id  && (
                     <button 
-                        className="btn btn--primary profile__btn-edit"
+                        className="btn btn--secondary btn--small profile__btn-edit"
                         onClick={()=> push('/profile/edit')}
                     >
                         Edit

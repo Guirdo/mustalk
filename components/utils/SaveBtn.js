@@ -1,15 +1,10 @@
-import Image from "next/image";
+import { SaveFloppyDisk } from "iconoir-react";
 
 function SaveBtn() {
     return (
-        <div className="post-action">
+        <div className="post-action post-action--save">
             <span>
-                <Image
-                    src="/icons/heart.png"
-                    height={20}
-                    width={20}
-                    alt="heart"
-                />
+                <SaveFloppyDisk strokeWidth={2}/>
             </span>
             <span
                 className="post-action__text"

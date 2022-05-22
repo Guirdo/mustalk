@@ -1,20 +1,22 @@
+import { Check, Trash } from "iconoir-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import cx from 'classnames'
 import { supabase } from "../../utils/supabaseClient";
 
 function DeleteBtn({ id }) {
     const [isClicked, setIsClicked] = useState(false)
     const { push } = useRouter()
 
-    const handleClick = async() => {
+    const handleClick = async () => {
         if (!isClicked) {
             setIsClicked(true)
 
             setTimeout(() => {
                 setIsClicked(false)
             }, 2500)
-        }else{
-            const { data,error } = await supabase
+        } else {
+            const { data, error } = await supabase
                 .from('post')
                 .delete()
                 .match({ id })
@@ -25,14 +27,25 @@ function DeleteBtn({ id }) {
 
     return (
         <div
-            className="post-action"
+            className={cx('post-action','post-action--delete', {'post-action--active': isClicked})}
             onClick={handleClick}
         >
+
             {
                 !isClicked ? (
-                    <span className="post-action__text">Delete</span>
+                    <>
+                        <span>
+                            <Trash strokeWidth={2} />
+                        </span>
+                        <span className="post-action__text">Delete</span>
+                    </>
                 ) : (
-                    <span className="post-action__text">Sure?</span>
+                    <>
+                        <span>
+                            <Check strokeWidth={2}/>
+                        </span>
+                        <span className="post-action__text">Sure?</span>
+                    </>
                 )
             }
         </div>

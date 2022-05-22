@@ -1,15 +1,10 @@
-import Image from "next/image";
+import { Heart, StarOutline } from "iconoir-react";
 
 function LikeBtn() {
     return (
-        <div className="post-action">
+        <div className="post-action post-action--like">
             <span>
-                <Image
-                    src="/icons/heart.png"
-                    height={20}
-                    width={20}
-                    alt="heart"
-                />
+                <StarOutline strokeWidth={2}/>
             </span>
             <span
                 className="post-action__text"

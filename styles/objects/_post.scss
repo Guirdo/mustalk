@@ -52,6 +52,30 @@
 
     &__text {
       margin-left: $s-sm;
+
+      @include mobile-screen {
+        display: none;
+      }
+    }
+
+    &--delete {
+      color: $danger;
+    }
+
+    &--save{
+      color: $secondary;
+    }
+
+    &--like{
+      color: $warning;
+    }
+
+    &--active{
+      background-color: lighten($primary, 40%);
+
+      &:hover {
+        background-color: lighten($primary, 40%);
+      }
     }
   }
 

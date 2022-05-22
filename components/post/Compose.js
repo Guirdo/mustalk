@@ -41,7 +41,7 @@ function Compose() {
                 }
 
                 reset()
-                push(window.location.pathname)
+                push('/home')
             }else{
                 alert('Please fill out all fields')
             }

@@ -45,7 +45,10 @@ function Post({ post, username }) {
                 </div>
                 <div className="post__actions">
                     <SaveBtn />
-                    <LikeBtn />
+                    <LikeBtn 
+                        postId={id}
+                        userId={user?.id}
+                    />
                     {
                         author === user?.id && (
                             <DeleteBtn

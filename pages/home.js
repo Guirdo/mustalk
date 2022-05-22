@@ -6,20 +6,18 @@ import Link from "next/link";
 import { supabase } from "../utils/supabaseClient";
 
 export async function getStaticProps() {
-    const { data, error } = await supabase
+    const { data } = await supabase
         .from('post')
         .select(`
-            id,description,songlink,created_at,author,
-            profiles(
-                id,
-                username
-            )
+            id,description,songlink,
+            created_at,author,likes,
+            profiles(username)
         `)
         .order('created_at', { ascending: false })
 
     return {
         props: {
-            posts: data
+            posts:data
         },
         revalidate: 1,
     };

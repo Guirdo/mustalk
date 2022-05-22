@@ -9,6 +9,10 @@
 
     //For anchor tags
     text-decoration: none;
+
+    &:hover{
+      cursor: pointer;
+    }
   
     &--block {
       width: 100%;

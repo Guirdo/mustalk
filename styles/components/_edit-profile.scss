@@ -12,16 +12,27 @@
         margin-bottom: $s-md;
     }
 
+    &__form{
+        width: 100%;
+    }
+    
     &__photo{
         margin-bottom: $s-md;
     }
-
+    
     &__input{
         margin-bottom: $s-sm;
     }
-
+    
     &__textarea{
         margin-bottom: $s-sm;
+        resize: none;
+    }
+
+    &__count{
+        color: gray;
+        margin-bottom: $s-sm;
+        text-align: right;
     }
 
 }

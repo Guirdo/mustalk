@@ -1,12 +1,14 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import validator from 'validator'
 import Layout from "../../components/Layout";
 import { useForm } from "../../hooks/useForm";
 import { supabase } from "../../utils/supabaseClient";
 
 function EditProfilePage() {
-
+    const [count, setCount] = useState(0)
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();
 
@@ -26,18 +28,32 @@ function EditProfilePage() {
         e.preventDefault();
 
         try {
-            await supabase
-                .from('profiles').update({
-                    username,
-                    biography,
-                    website
-                })
-                .match({ id: user.id })
+            if (isFormValid()) {
+                await supabase
+                    .from('profiles').update({
+                        username,
+                        biography,
+                        website
+                    })
+                    .match({ id: user.id })
 
-            push(`/profile/${username}`)
+                push(`/profile/${username}`)
+            } else {
+                alert("Please fill all the fields")
+            }
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const isFormValid = () => {
+        if (validator.isEmpty(username)) {
+            return false
+        } else if (!validator.isURL(website) && !validator.isEmpty(website)) {
+            return false
+        }
+
+        return true
     }
 
     return (
@@ -72,11 +88,17 @@ function EditProfilePage() {
                     <textarea
                         className="edit-profile__textarea"
                         placeholder="Biography"
-                        rows={3}
+                        rows={4}
                         value={biography}
                         name="biography"
                         onChange={handleInputChange}
+                        maxLength={280}
+
                     ></textarea>
+
+                    <div className="edit-profile__count">
+                        <span>{count}/280</span>
+                    </div>
 
                     <input
                         className="edit-profile__input"

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import validator from 'validator'
 import Layout from "../../components/Layout";
@@ -12,9 +12,11 @@ function EditProfilePage() {
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();
 
-    if (!user) {
-        push('/')
-    }
+    useEffect(() => {
+        if (!user) {
+            push('/')
+        }
+    }, [user])
 
     const [formValues, handleInputChange] = useForm({
         username: user?.username || "",

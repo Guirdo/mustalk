@@ -4,26 +4,27 @@ import Layout from '../components/Layout';
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { supabase } from "../utils/supabaseClient";
+import { useEffect, useState } from "react";
 
 export async function getStaticProps() {
-    const { data } = await supabase
+    const { data:posts } = await supabase
         .from('post')
         .select(`
             id,description,songlink,
             created_at,author,likes,
-            profiles(username)
+            profiles:author(username)
         `)
         .order('created_at', { ascending: false })
 
     return {
         props: {
-            posts:data
+            posts
         },
         revalidate: 1,
     };
 }
 
-function HomeScreen({ posts }) {
+function HomeScreen({posts}) {
     const { isAuthenticated } = useSelector(state => state.auth)
 
     return (

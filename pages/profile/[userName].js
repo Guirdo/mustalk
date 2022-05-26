@@ -46,7 +46,6 @@ export const getStaticProps = async ({ params }) => {
 }
 
 function UserPage({ profile, posts }) {
-    const { username } = profile || {}
     const dispatch = useDispatch()
     const [user, setUser] = useState(supabase.auth.user() || null)
 
@@ -71,7 +70,7 @@ function UserPage({ profile, posts }) {
                     <Post
                         key={post.id}
                         post={post}
-                        username={username}
+                        username={profile.username}
                     />
                 ))
             }

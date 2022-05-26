@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
-function Profile({ profile }) {
+function Profile({ profile = {} }) {
     const { id,username, biography,website} = profile
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();

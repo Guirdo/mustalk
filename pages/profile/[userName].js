@@ -61,7 +61,7 @@ function UserPage({ profile, posts }) {
 
     return (
         <Layout
-            title={username}
+            title={profile.username}
         >
             <Profile profile={profile} />
 

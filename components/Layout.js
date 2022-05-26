@@ -7,7 +7,7 @@ function Layout({ title, children }) {
     return (
         <>
             <Head>
-                <title>{title}</title>
+                <title>{title || ''}</title>
             </Head>
 
             <header>

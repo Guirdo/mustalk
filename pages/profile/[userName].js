@@ -8,8 +8,6 @@ import { getUser, setAuthenticated } from "../../features/auth/authSlice";
 import { supabase } from "../../utils/supabaseClient";
 
 export const getStaticPaths = async () => {
-    //const user = supabase.auth.user()
-
     const { data } = await supabase
         .from('profiles')
         .select(`id,username`)
@@ -48,7 +46,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 function UserPage({ profile, posts }) {
-    const { username } = profile
+    const { username } = profile || {}
     const dispatch = useDispatch()
     const [user, setUser] = useState(supabase.auth.user() || null)
 

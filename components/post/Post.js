@@ -44,7 +44,10 @@ function Post({ post, username }) {
                     </p>
                 </div>
                 <div className="post__actions">
-                    <SaveBtn />
+                    <SaveBtn 
+                        postId={id}
+                        userId={user?.id}
+                    />
                     <LikeBtn 
                         postId={id}
                         userId={user?.id}

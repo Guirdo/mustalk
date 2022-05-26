@@ -26,8 +26,7 @@ function LikeBtn({ postId, userId }) {
                         post_id: postId,
                         user_id: userId,
                     })
-
-                setIsLiked(false)
+                    .then(() => setIsLiked(false))
             }else{
                 setIsLiked(true)
             }
@@ -58,14 +57,14 @@ function LikeBtn({ postId, userId }) {
                     user_id: userId,
                 })
 
-            if (data.length > 0) {
+            if (data?.length > 0) {
                 setIsLiked(true)
             }
         }
 
         getLikes()
         getUserLike()
-    }, [isLiked])
+    }, [isLiked, likeCount, postId, userId])
 
 
     return (

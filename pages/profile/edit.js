@@ -16,7 +16,7 @@ function EditProfilePage() {
         if (!user) {
             push('/')
         }
-    }, [user])
+    }, [user, push])
 
     const [formValues, handleInputChange] = useForm({
         username: user?.username || "",

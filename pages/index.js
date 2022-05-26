@@ -23,6 +23,7 @@ export default function Home() {
   const { email } = formValues;
 
   useEffect(() => {
+    console.log()
     if (user) {
       dispatch(setAuthenticated(true))
       dispatch(getUser())
@@ -50,6 +51,10 @@ export default function Home() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleGoogle = async() => {
+    const { error } = await supabase.auth.signIn({provider: 'google'})
   }
 
   return (
@@ -83,9 +88,16 @@ export default function Home() {
         )
       }
 
-      <p>You{"'"}ll receive a ✨magic link✨</p>
       <div>
+        <button
+          className='btn btn--primary-inline btn--block'
+          onClick={handleGoogle}
+        >
+          Log in with Google
+        </button>
+      </div>
 
+      <div>
         <p>
           <Link href="#">
             Notice of privacy

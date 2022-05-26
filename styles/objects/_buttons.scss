@@ -57,6 +57,7 @@
       &--#{$colorName}-inline {
         background: white;
         color: var(--#{$colorName});
+        border: 1px solid var(--#{$colorName});
         
         &:hover {
           background-color: darken(rgb(241, 241, 241), 1%);

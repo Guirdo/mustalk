@@ -4,7 +4,7 @@ import { useState } from "react";
 import cx from 'classnames'
 import { supabase } from "../../utils/supabaseClient";
 
-function DeleteBtn({ id }) {
+function DeleteBtn({ author, postId }) {
     const [isClicked, setIsClicked] = useState(false)
     const { push } = useRouter()
 
@@ -16,18 +16,26 @@ function DeleteBtn({ id }) {
                 setIsClicked(false)
             }, 2500)
         } else {
-            const { data, error } = await supabase
-                .from('post')
-                .delete()
-                .match({ id })
+            try {
+                await supabase
+                    .from('likes')
+                    .delete()
+                    .match({ post_id: author })
+                await supabase
+                    .from('post')
+                    .delete()
+                    .match({ id: postId })
 
-            push(window.location.pathname)
+                push(window.location.pathname)
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
 
     return (
         <div
-            className={cx('post-action','post-action--delete', {'post-action--active': isClicked})}
+            className={cx('post-action', 'post-action--delete', { 'post-action--active': isClicked })}
             onClick={handleClick}
         >
 
@@ -42,7 +50,7 @@ function DeleteBtn({ id }) {
                 ) : (
                     <>
                         <span>
-                            <Check strokeWidth={2}/>
+                            <Check strokeWidth={2} />
                         </span>
                         <span className="post-action__text">Sure?</span>
                     </>

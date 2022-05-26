@@ -52,7 +52,8 @@ function Post({ post, username }) {
                     {
                         author === user?.id && (
                             <DeleteBtn
-                                id={id}
+                                postId={id}
+                                author={author}
                             />
                         )
                     }

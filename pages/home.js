@@ -11,7 +11,7 @@ export async function getStaticProps() {
         .from('post')
         .select(`
             id,description,songlink,
-            created_at,author,likes,
+            created_at,author,
             profiles:author(username)
         `)
         .order('created_at', { ascending: false })

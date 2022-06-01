@@ -28,6 +28,13 @@ function SideBar() {
                                 Profile
                             </a>
                         </Link>
+                        <Link
+                            href={`/bookmarks`}
+                        >
+                            <a className="btn btn--primary-inline">
+                                Bookmarks
+                            </a>
+                        </Link>
                         <button
                             className="btn btn--primary-inline"
                             onClick={handleLogout}

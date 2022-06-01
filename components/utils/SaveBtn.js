@@ -36,7 +36,7 @@ function SaveBtn({ postId, userId }) {
 
     useEffect(() => {
         async function getUserSave() {
-            const { data, error } = await supabase
+            const { data } = await supabase
                 .from('bookmarks')
                 .select('*', { count: "exact" })
                 .match({
@@ -44,13 +44,13 @@ function SaveBtn({ postId, userId }) {
                     user_id: userId,
                 })
             
-            if (data.length > 0) {
+            if (data?.length > 0) {
                 setIsSaved(true)
             }
         }
 
         getUserSave()
-    }, [])
+    }, [postId, userId])
 
     return (
         <div

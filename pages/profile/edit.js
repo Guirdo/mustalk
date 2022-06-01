@@ -8,7 +8,7 @@ import { useForm } from "../../hooks/useForm";
 import { supabase } from "../../utils/supabaseClient";
 
 function EditProfilePage() {
-    const [count, setCount] = useState(0)
+    const [count] = useState(0)
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();
 

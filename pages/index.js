@@ -89,15 +89,6 @@ export default function Home() {
       }
 
       <div>
-        <button
-          className='btn btn--primary-inline btn--block'
-          onClick={handleGoogle}
-        >
-          Log in with Google
-        </button>
-      </div>
-
-      <div>
         <p>
           <Link href="#">
             Notice of privacy

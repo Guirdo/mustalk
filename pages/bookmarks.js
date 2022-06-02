@@ -33,7 +33,7 @@ function BookmarksPage() {
         }
 
         getBookmarks()
-    }, [])
+    })
 
     return (
         <Layout

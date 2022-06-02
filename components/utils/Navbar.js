@@ -52,6 +52,14 @@ function Navbar() {
                         </Link>
                     </li>
 
+                    <li className={itemClasses}>
+                        <Link href='/bookmarks'>
+                            <a className="navbar__link">
+                                Bookmarks
+                            </a>
+                        </Link>
+                    </li>
+
                     <li
                         className={itemClasses}
                         onClick={handleLogout}

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Layout from "../components/Layout";
 import Post from "../components/post/Post";
@@ -11,29 +11,29 @@ function BookmarksPage() {
     const { push } = useRouter();
 
     useEffect(() => {
-        async function getBookmarks() {
-            await supabase
-                .from('bookmarks')
-                .select('post_id')
-                .match({ user_id: user.id })
-                .then(res => {
-                    res.data.map(async (bk) => {
-                        await supabase
-                            .from('post')
-                            .select('id,description,songlink,created_at,author,profiles:author(username)')
-                            .match({ id: bk.post_id })
-                            .single()
-                            .then(res => setPosts(posts => [...posts, res.data]))
-                    })
-                })
-        }   
-
         if (!user) {
             push('/')
         }
 
         getBookmarks()
     })
+
+    const getBookmarks = useCallback(async () => {
+        await supabase
+            .from('bookmarks')
+            .select('post_id')
+            .match({ user_id: user.id })
+            .then(res => {
+                res.data.map(async (bk) => {
+                    await supabase
+                        .from('post')
+                        .select('id,description,songlink,created_at,author,profiles:author(username)')
+                        .match({ id: bk.post_id })
+                        .single()
+                        .then(res => setPosts(posts => [...posts, res.data]))
+                })
+            })
+    },[user])
 
     return (
         <Layout

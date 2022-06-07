@@ -1,6 +1,7 @@
-import { StarDashed, StarOutline } from "iconoir-react";
+import { StarOutline } from "iconoir-react";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabaseClient";
+import cx from "classnames";
 
 function LikeBtn({ postId, userId }) {
 
@@ -82,7 +83,7 @@ function LikeBtn({ postId, userId }) {
                 }
             </span>
             <span
-                className="post-action__text"
+                className={cx("post-action__text", { "post-action__text--active": likeCount > 0 })}
             >
                 {
                     likeCount > 0 ? (

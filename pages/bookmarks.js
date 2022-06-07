@@ -1,57 +1,39 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Layout from "../components/Layout";
 import Post from "../components/post/Post";
 import { supabase } from "../utils/supabaseClient";
 
-export const getStaticProps = async () => {
-    try {
-        let posts = []
-
-        await supabase
-            .from('bookmarks')
-            .select('post_id')
-            .match({ user_id: user.id })
-            .then(res => {
-                res.data.map(async (bk) => {
-                    await supabase
-                        .from('post')
-                        .select('id,description,songlink,created_at,author,profiles:author(username)')
-                        .match({ id: bk.post_id })
-                        .single()
-                        .then(res => posts.push(res.data))
-                })
-            })
-
-        if(posts.length === 0){
-            throw new Error('No bookmarks')
-        }
-
-        return {
-            props: {
-                posts
-            }
-        }
-    }catch(e){
-        console.log(e)
-        return {
-            props: {
-                posts: null
-            }
-        }
-    }finally {
-
-    }
-}
-
-function BookmarksPage({ posts }) {
+function BookmarksPage() {
+    const [posts, setPosts] = useState([])
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();
 
     useEffect(() => {
         if (!user) {
             push('/')
+        }
+
+        getBookmarks()
+    })
+
+    const getBookmarks = useCallback(async () => {
+        if (posts.length === 0) {
+            await supabase
+                .from('bookmarks')
+                .select('post_id')
+                .match({ user_id: user.id })
+                .then(res => {
+                    res.data.map(async (bk) => {
+                        await supabase
+                            .from('post')
+                            .select('id,description,songlink,created_at,author,profiles:author(username)')
+                            .match({ id: bk.post_id })
+                            .single()
+                            .then(res => setPosts(posts => [...posts, res.data]))
+                    })
+                })
         }
     })
 
@@ -60,7 +42,7 @@ function BookmarksPage({ posts }) {
             title="Bookmarks"
         >
             {
-                posts ? (
+                posts.length > 0 ? (
                     posts.map(post => (
                         <Post
                             key={post.id}
@@ -70,8 +52,7 @@ function BookmarksPage({ posts }) {
                     ))
                 ) : (
                     <div >
-                        <p>Maybe you already have bookmarks, but I{"'"}m still working on them</p>
-                        <p>Be patient. You can still save posts.</p>
+                        <p>You have no bookmarks</p>
                     </div>
                 )
             }

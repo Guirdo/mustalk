@@ -1,24 +1,14 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Layout from "../components/Layout";
 import Post from "../components/post/Post";
 import { supabase } from "../utils/supabaseClient";
 
-function BookmarksPage() {
-    const [posts, setPosts] = useState([])
-    const { user } = useSelector(state => state.auth);
-    const { push } = useRouter();
+export const getStaticProps = async () => {
+    try {
+        let posts = []
 
-    useEffect(() => {
-        if (!user) {
-            push('/')
-        }
-
-        getBookmarks()
-    })
-
-    const getBookmarks = useCallback(async () => {
         await supabase
             .from('bookmarks')
             .select('post_id')
@@ -30,10 +20,40 @@ function BookmarksPage() {
                         .select('id,description,songlink,created_at,author,profiles:author(username)')
                         .match({ id: bk.post_id })
                         .single()
-                        .then(res => setPosts(posts => [...posts, res.data]))
+                        .then(res => posts.push(res.data))
                 })
             })
-    },[user])
+
+        if(posts.length === 0){
+            throw new Error('No bookmarks')
+        }
+
+        return {
+            props: {
+                posts
+            }
+        }
+    }catch(e){
+        console.log(e)
+        return {
+            props: {
+                posts: null
+            }
+        }
+    }finally {
+
+    }
+}
+
+function BookmarksPage({ posts }) {
+    const { user } = useSelector(state => state.auth);
+    const { push } = useRouter();
+
+    useEffect(() => {
+        if (!user) {
+            push('/')
+        }
+    })
 
     return (
         <Layout
@@ -50,7 +70,8 @@ function BookmarksPage() {
                     ))
                 ) : (
                     <div >
-                        <p>You have no bookmarks</p>
+                        <p>Maybe you already have bookmarks, but I{"'"}m still working on them</p>
+                        <p>Be patient. You can still save posts.</p>
                     </div>
                 )
             }

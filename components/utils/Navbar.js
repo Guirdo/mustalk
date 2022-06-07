@@ -3,8 +3,9 @@ import Link from "next/link";
 import cx from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { supabase } from "../../utils/supabaseClient";
 import { Cancel, Menu } from "iconoir-react";
+import { supabase } from "../../utils/supabaseClient";
+import { setAuthenticated } from "../../features/auth/authSlice";
 
 function Navbar() {
     const { user } = useSelector(state => state.auth);

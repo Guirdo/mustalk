@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import { supabase } from "../utils/supabaseClient";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export async function getStaticProps() {
     const { data:posts } = await supabase
@@ -26,6 +27,14 @@ export async function getStaticProps() {
 
 function HomeScreen({posts}) {
     const { isAuthenticated } = useSelector(state => state.auth)
+    const { push } = useRouter()
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            push('/')
+        } 
+    })
+    
 
     return (
         <Layout

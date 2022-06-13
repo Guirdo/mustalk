@@ -11,6 +11,21 @@ function Post({ post, username }) {
     const { id, author, description, songlink, created_at } = post
     const { user } = useSelector(state => state.auth)
 
+    const formatDate = () => {
+        const today = moment()
+        let formatedDate = moment(created_at).fromNow()
+
+        if(today.diff(created_at, 'days') > 0) {
+            formatedDate = moment(created_at).format('MMM DD')
+        }else if(today.diff(created_at, 'hours') > 20) {
+            formatedDate = 'Yesterday'
+        }else if(today.diff(created_at, 'days') > 365) {
+            formatedDate = moment(created_at).format('MMMM Do, YY')
+        }
+
+        return formatedDate
+    }
+
     return (
         <article className="post">
             <div>
@@ -25,7 +40,7 @@ function Post({ post, username }) {
                 <div>
                     <Link href={`/profile/${username}`} passHref><span className="post__user">{username}</span></Link>
                     <span>{' '}</span>
-                    <span>{moment(created_at).format('MMMM/DD/YY hh:mm')}</span>
+                    <span>{formatDate()}</span>
                 </div>
                 <div className="post-content">
                     <p>

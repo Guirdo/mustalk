@@ -11,13 +11,13 @@
     font-weight: bold;
     text-decoration: underline;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
 
   &-content {
-    margin: $s-xs;
+    margin-top: $s-sm;
   }
 
   &__description {
@@ -28,12 +28,24 @@
     margin-bottom: $s-sm;
   }
 
+  &__music-card {
+    margin-block: $s-sm;
+
+    &>p {
+      width: 95%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+  }
+
   &__actions {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
-    @include mobile-screen{
+    @include mobile-screen {
       font-size: $f-xs;
     }
 
@@ -61,7 +73,7 @@
       @include mobile-screen {
         display: none;
 
-        &--active{
+        &--active {
           display: block;
         }
       }
@@ -71,19 +83,19 @@
       color: $danger;
     }
 
-    &--save{
+    &--save {
       color: $secondary;
     }
 
-    &--like{
+    &--like {
       color: $warning;
     }
 
-    &--share{
+    &--share {
       color: $info;
     }
 
-    &--active{
+    &--active {
       background-color: lighten($primary, 40%);
 
       &:hover {

@@ -50,7 +50,7 @@ function Post({ post, username }) {
                         {description}
                     </p>
                 </div>
-                <div className="music-card">
+                <div className="post__music-card">
                     <p>
                         <a
                             href={songlink}

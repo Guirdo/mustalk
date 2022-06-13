@@ -19,7 +19,14 @@
 
     &__music-card{
         font-size: $f-md;
-        margin-block: $s-sm;    
+        margin-block: $s-sm;  
+        
+        &>p {
+            width: 95%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
     }
 
     &__date{

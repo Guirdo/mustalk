@@ -1,0 +1,40 @@
+.post-card{
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: $s-sm;
+    padding: $s-sm;
+    width: 100%;
+
+    &__profile{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: $s-sm;
+        align-items: center;
+    }
+
+    &__content{
+        margin: $s-xs;
+        font-size: $f-md;
+    }
+
+    &__music-card{
+        font-size: $f-md;
+        margin-block: $s-sm;    
+    }
+
+    &__date{
+        margin-bottom: $s-sm;
+        font-style: italic;
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-block: $s-sm;    
+    
+        &--right {
+          justify-content: end;
+        }
+      }
+}

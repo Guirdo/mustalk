@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
-import Post from "../../components/post/Post";
+import PostCard from "../../components/post/PostCard";
 import { getUser, setAuthenticated } from "../../features/auth/authSlice";
 import { supabase } from "../../utils/supabaseClient";
 
@@ -49,7 +49,7 @@ function PostPage({ post }) {
             dispatch(setAuthenticated(true))
             dispatch(getUser())
         }
-        supabase.auth.onAuthStateChange(async (event, session) => {
+        supabase.auth.onAuthStateChange(async () => {
             setUser(supabase.auth.user() || null)
         })
     })
@@ -60,7 +60,7 @@ function PostPage({ post }) {
             description={post.description}
             author={post.profiles.username}
         >
-            <Post
+            <PostCard
                 key={post.id}
                 post={post}
                 username={post.profiles.username}

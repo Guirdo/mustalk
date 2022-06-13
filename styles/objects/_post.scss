@@ -33,6 +33,10 @@
     flex-direction: row;
     justify-content: space-between;
 
+    @include mobile-screen{
+      font-size: $f-xs;
+    }
+
     &--right {
       justify-content: end;
     }
@@ -73,6 +77,10 @@
 
     &--like{
       color: $warning;
+    }
+
+    &--share{
+      color: $info;
     }
 
     &--active{

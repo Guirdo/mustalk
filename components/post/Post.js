@@ -1,15 +1,16 @@
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import DeleteBtn from "../utils/DeleteBtn";
 import LikeBtn from "../utils/LikeBtn";
 import SaveBtn from "../utils/SaveBtn";
 
 function Post({ post, username }) {
-
     const { id, author, description, songlink, created_at } = post
     const { user } = useSelector(state => state.auth)
+    const { push } = useRouter()
 
     const formatDate = () => {
         const today = moment()
@@ -36,7 +37,9 @@ function Post({ post, username }) {
                     alt="profile"
                 />
             </div>
-            <div>
+            <div 
+                onClick={() => push(`/post/${id}`)}
+            >
                 <div>
                     <Link href={`/profile/${username}`} passHref><span className="post__user">{username}</span></Link>
                     <span>{' '}</span>

@@ -28,7 +28,7 @@ function DeleteBtn({ author, postId }) {
 
                 push(window.location.pathname)
             } catch (e) {
-                console.log(e)
+                //console.log(e)
             }
         }
     }

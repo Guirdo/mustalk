@@ -8,7 +8,7 @@ function LikeBtn({ postId, userId }) {
     const [isLiked, setIsLiked] = useState(false)
     const [likeCount, setLikeCount] = useState(0)
 
-    const handleLike = async () => {
+    const handleLike = async (e) => {
         try {
             const { _, error } = await supabase
                 .from('likes')
@@ -33,7 +33,7 @@ function LikeBtn({ postId, userId }) {
             }
 
         } catch (e) {
-            console.log(e)
+            //console.log(e)
         }
     }
 

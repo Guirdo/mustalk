@@ -30,7 +30,7 @@ function SaveBtn({ postId, userId }) {
                 setIsSaved(true)
             }
         }catch(e){
-            console.log(e)
+            //console.log(e)
         }
     }
 

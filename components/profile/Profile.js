@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 function Profile({ profile = {} }) {
-    const { id,username, biography,website} = profile
+    const { id,username, biography,website,avatar_url} = profile
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();
 
@@ -11,7 +11,9 @@ function Profile({ profile = {} }) {
         <div className="profile">
             <figure className="profile__photo">
                 <Image
-                    src="/icons/user.png"
+                    src={avatar_url ? 
+                        `https://soemnqnroxxnmbxbehex.supabase.co/storage/v1/object/public/avatars/${avatar_url}` 
+                        : "/icons/user.png"}
                     alt="profile"
                     width={100}
                     height={100}

@@ -42,19 +42,6 @@ export const getStaticProps = async ({ params }) => {
 }
 
 function PostPage({ post }) {
-    const dispatch = useDispatch()
-    const [user, setUser] = useState(supabase.auth.user() || null)
-
-    useEffect(() => {
-        if (user) {
-            dispatch(setAuthenticated(true))
-            dispatch(getUser())
-        }
-        supabase.auth.onAuthStateChange(async () => {
-            setUser(supabase.auth.user() || null)
-        })
-    })
-
     return (
         <Layout
             title={`Post by ${post.profiles.username}`}

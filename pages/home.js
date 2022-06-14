@@ -4,8 +4,6 @@ import Layout from '../components/Layout';
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { supabase } from "../utils/supabaseClient";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 
 export async function getStaticProps() {
     const { data:posts } = await supabase

@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import validator from 'validator'
 import Layout from "../../components/Layout";
+import Avatar from "../../components/profile/Avatar";
 import { useForm } from "../../hooks/useForm";
 import { supabase } from "../../utils/supabaseClient";
 
 function EditProfilePage() {
     const [count] = useState(0)
+    const [avatar_url, setAvatarUrl] = useState('')
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();
 
@@ -16,7 +18,7 @@ function EditProfilePage() {
         if (!user) {
             push('/')
         }
-    }, [user, push])
+    }, [])
 
     const [formValues, handleInputChange] = useForm({
         username: user?.username || "",
@@ -35,7 +37,8 @@ function EditProfilePage() {
                     .from('profiles').update({
                         username,
                         biography,
-                        website
+                        website,
+                        avatar_url,
                     })
                     .match({ id: user.id })
 
@@ -65,14 +68,12 @@ function EditProfilePage() {
             <div className="edit-profile">
                 <h1 className="edit-profile__title">Edit Profile</h1>
 
-                <figure className="edit-profile__photo">
-                    <Image
-                        src="/icons/user.png"
-                        alt="profile"
-                        width={100}
-                        height={100}
-                    />
-                </figure>
+                <Avatar 
+                    url={user?.avatar_url}
+                    onUpload={(url)=>{
+                        setAvatarUrl(url)
+                    }}
+                />
 
                 <form
                     className="edit-profile__form"

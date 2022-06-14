@@ -47,18 +47,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 function UserPage({ profile, posts }) {
-    const dispatch = useDispatch()
-    const [user, setUser] = useState(supabase.auth.user() || null)
-
-    useEffect(() => {
-        if (user) {
-            dispatch(setAuthenticated(true))
-            dispatch(getUser())
-        }
-        supabase.auth.onAuthStateChange(async (event, session) => {
-            setUser(supabase.auth.user() || null)
-        })
-    })
+    
 
     return (
         <Layout

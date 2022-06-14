@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import ShareBtn from "../actions/ShareBtn";
-import DeleteBtn from "../utils/DeleteBtn";
-import LikeBtn from "../utils/LikeBtn";
-import SaveBtn from "../utils/SaveBtn";
+import DeleteBtn from "../actions/DeleteBtn";
+import LikeBtn from "../actions/LikeBtn";
+import SaveBtn from "../actions/SaveBtn";
 
 function Post({ post, username }) {
     const { id, author, description, songlink, created_at } = post

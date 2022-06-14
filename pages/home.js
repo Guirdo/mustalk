@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { supabase } from "../utils/supabaseClient";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 export async function getStaticProps() {
@@ -16,6 +16,7 @@ export async function getStaticProps() {
             profiles:author(username)
         `)
         .order('created_at', { ascending: false })
+        .limit(7)
 
     return {
         props: {
@@ -27,14 +28,6 @@ export async function getStaticProps() {
 
 function HomeScreen({posts}) {
     const { isAuthenticated } = useSelector(state => state.auth)
-    const { push } = useRouter()
-
-    useEffect(() => {
-        if (!isAuthenticated) {
-            push('/')
-        } 
-    })
-    
 
     return (
         <Layout

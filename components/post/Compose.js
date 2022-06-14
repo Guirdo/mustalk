@@ -80,7 +80,6 @@ function Compose() {
                 />
             </figure>
             <form
-                className="post-content"
                 onSubmit={handleSubmit}
             >
                 <textarea

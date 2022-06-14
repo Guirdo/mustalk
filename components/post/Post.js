@@ -37,15 +37,15 @@ function Post({ post, username }) {
                     alt="profile"
                 />
             </div>
-            <div 
-                onClick={() => push(`/post/${id}`)}
-            >
+            <div >
                 <div>
                     <Link href={`/profile/${username}`} passHref><span className="post__user">{username}</span></Link>
                     <span>{' '}</span>
                     <span>{formatDate()}</span>
                 </div>
-                <div className="post-content">
+                <div className="post-content"
+                    onClick={() => push(`/post/${id}`)}
+                >
                     <p>
                         {description}
                     </p>

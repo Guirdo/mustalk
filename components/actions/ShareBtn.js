@@ -4,9 +4,13 @@ function ShareBtn() {
 
     const handleClick = () => {
         const url = window.location.href;
-        navigator.clipboard.writeText(url);
-
-        alert('Copied to clipboard!');
+        navigator.clipboard.writeText(url)
+            .then(() => {
+                alert('Copied to clipboard!');
+            })
+            .catch(err => {
+                alert("Sorry, it's doesn't work in your browser");
+            });
     }
 
     return (

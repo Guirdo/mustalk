@@ -57,7 +57,9 @@ function PostCard({ post, username }) {
                         postId={id}
                         userId={user?.id}
                     />
-                    <ShareBtn />
+                    <ShareBtn 
+                        postId={id}
+                    />
                     {
                         author === user?.id && (
                             <DeleteBtn

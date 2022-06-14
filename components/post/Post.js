@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import ShareBtn from "../actions/ShareBtn";
 import DeleteBtn from "../utils/DeleteBtn";
 import LikeBtn from "../utils/LikeBtn";
 import SaveBtn from "../utils/SaveBtn";
@@ -69,6 +70,9 @@ function Post({ post, username }) {
                     <LikeBtn 
                         postId={id}
                         userId={user?.id}
+                    />
+                    <ShareBtn
+                        postId={id}
                     />
                     {
                         author === user?.id && (

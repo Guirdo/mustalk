@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
 import PostCard from "../../components/post/PostCard";
-import { getUser, setAuthenticated } from "../../features/auth/authSlice";
 import { supabase } from "../../utils/supabaseClient";
 
 export const getStaticPaths = async () => {
@@ -35,23 +32,24 @@ export const getStaticProps = async ({ params }) => {
 
     return {
         props: {
-            post
+            post,
+            profile: post.profiles,
         },
         revalidate: 1,
     }
 }
 
-function PostPage({ post }) {
+function PostPage({ post, profile }) {
     return (
         <Layout
-            title={`Post by ${post.profiles.username}`}
+            title={`Post by ${profile?.username}`}
             description={post.description}
-            author={post.profiles.username}
+            author={profile?.username}
         >
             <PostCard
                 key={post.id}
                 post={post}
-                profile={post.profiles}
+                profile={profile}
             />
         </Layout>
     );

@@ -11,7 +11,7 @@ export async function getStaticProps() {
         .select(`
             id,description,songlink,
             created_at,author,
-            profiles:author(username)
+            profiles:author(username,avatar_url)
         `)
         .order('created_at', { ascending: false })
         .limit(7)
@@ -48,7 +48,7 @@ function HomeScreen({posts}) {
                     <Post
                         key={post.id}
                         post={post}
-                        username={post.profiles.username}
+                        profile={post.profiles}
                     />
                 ))
             }

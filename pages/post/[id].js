@@ -28,7 +28,7 @@ export const getStaticProps = async ({ params }) => {
         .select(`
             id,description,songlink,
             created_at,author,
-            profiles:author(username)
+            profiles:author(username,avatar_url)
         `)
         .eq('id', params.id)
         .single()
@@ -51,7 +51,7 @@ function PostPage({ post }) {
             <PostCard
                 key={post.id}
                 post={post}
-                username={post.profiles.username}
+                profile={post.profiles}
             />
         </Layout>
     );

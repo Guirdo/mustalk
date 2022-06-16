@@ -54,7 +54,7 @@ function UserPage({ profile, posts }) {
                     <Post
                         key={post.id}
                         post={post}
-                        username={profile.username}
+                        profile={profile}
                     />
                 ))
             }

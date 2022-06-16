@@ -6,19 +6,20 @@ import ShareBtn from "../actions/ShareBtn";
 import DeleteBtn from "../actions/DeleteBtn";
 import LikeBtn from "../actions/LikeBtn";
 import SaveBtn from "../actions/SaveBtn";
+import Photo from "../profile/Photo";
 
-function PostCard({ post, username }) {
+function PostCard({ post, profile }) {
     const { id, author, description, songlink, created_at } = post
     const { user } = useSelector(state => state.auth)
+    const { username, avatar_url } = profile || {}
 
     return (
         <article className="post-card">
             <div className="post-card__profile">
-                <Image
-                    src="/icons/user.png"
-                    height={40}
-                    width={40}
-                    alt="profile"
+                <Photo 
+                    src={avatar_url}
+                    height={50}
+                    width={50}
                 />
 
                 <div>
@@ -57,7 +58,7 @@ function PostCard({ post, username }) {
                         postId={id}
                         userId={user?.id}
                     />
-                    <ShareBtn 
+                    <ShareBtn
                         postId={id}
                     />
                     {

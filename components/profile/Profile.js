@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Photo from "./Photo";
 
 function Profile({ profile = {} }) {
     const { id,username, biography,website,avatar_url} = profile
@@ -9,16 +10,12 @@ function Profile({ profile = {} }) {
 
     return (
         <div className="profile">
-            <figure className="profile__photo">
-                <Image
-                    src={avatar_url ? 
-                        `https://soemnqnroxxnmbxbehex.supabase.co/storage/v1/object/public/avatars/${avatar_url}` 
-                        : "/icons/user.png"}
-                    alt="profile"
-                    width={100}
-                    height={100}
-                />
-            </figure>
+            <Photo
+                src={avatar_url}
+                className="profile__photo"
+                height={100}
+                width={100}
+            />
             <h1 className="profile__name">{username}</h1>
             <p className="profile__biography">{biography}</p>
             <a

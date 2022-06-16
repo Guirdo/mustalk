@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import validator from 'validator'
 import { supabase } from '../../utils/supabaseClient';
 import { useForm } from '../../hooks/useForm';
+import Photo from '../profile/Photo';
 
 function Compose() {
     const [count, setCount] = useState(0)
@@ -42,7 +43,7 @@ function Compose() {
 
                 reset()
                 push('/home')
-            }else{
+            } else {
                 alert('Please fill out all fields')
             }
         } catch (e) {
@@ -71,14 +72,11 @@ function Compose() {
             className="post"
             onFocus={handleFocus}
         >
-            <figure className="post-user">
-                <Image
-                    src="/icons/user.png"
-                    alt="user"
-                    height={40}
-                    width={40}
-                />
-            </figure>
+            <Photo 
+                src={user?.avatar_url}
+                height={40}
+                width={40}
+            />
             <form
                 onSubmit={handleSubmit}
             >

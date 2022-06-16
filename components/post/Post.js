@@ -7,21 +7,23 @@ import ShareBtn from "../actions/ShareBtn";
 import DeleteBtn from "../actions/DeleteBtn";
 import LikeBtn from "../actions/LikeBtn";
 import SaveBtn from "../actions/SaveBtn";
+import Photo from "../profile/Photo";
 
-function Post({ post, username }) {
+function Post({ post, profile }) {
     const { id, author, description, songlink, created_at } = post
     const { user } = useSelector(state => state.auth)
+    const { username, avatar_url } = profile || {}
     const { push } = useRouter()
 
     const formatDate = () => {
         const today = moment()
         let formatedDate = moment(created_at).fromNow()
 
-        if(today.diff(created_at, 'days') > 0) {
+        if (today.diff(created_at, 'days') > 0) {
             formatedDate = moment(created_at).format('MMM DD')
-        }else if(today.diff(created_at, 'hours') > 20) {
+        } else if (today.diff(created_at, 'hours') > 20) {
             formatedDate = 'Yesterday'
-        }else if(today.diff(created_at, 'days') > 365) {
+        } else if (today.diff(created_at, 'days') > 365) {
             formatedDate = moment(created_at).format('MMMM Do, YY')
         }
 
@@ -31,11 +33,10 @@ function Post({ post, username }) {
     return (
         <article className="post">
             <div>
-                <Image
-                    src="/icons/user.png"
+                <Photo
+                    src={avatar_url}
                     height={40}
                     width={40}
-                    alt="profile"
                 />
             </div>
             <div >
@@ -63,11 +64,11 @@ function Post({ post, username }) {
                     </p>
                 </div>
                 <div className="post__actions">
-                    <SaveBtn 
+                    <SaveBtn
                         postId={id}
                         userId={user?.id}
                     />
-                    <LikeBtn 
+                    <LikeBtn
                         postId={id}
                         userId={user?.id}
                     />

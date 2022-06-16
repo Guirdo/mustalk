@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout";
 import PostCard from "../../components/post/PostCard";
+import PostLayout from "../../components/post/PostLayout";
 import { supabase } from "../../utils/supabaseClient";
 
 export const getStaticPaths = async () => {
@@ -41,17 +42,17 @@ export const getStaticProps = async ({ params }) => {
 
 function PostPage({ post = {}, profile= {} }) {
     return (
-        <Layout
-            title={`Post by ${profile?.username}`}
-            description={post?.description}
-            author={profile?.username}
+        <PostLayout
+            slug={post.id}
+            description={post.description}
+            author={profile.username}
         >
             <PostCard
-                key={post?.id}
+                key={post.id}
                 post={post}
                 profile={profile}
             />
-        </Layout>
+        </PostLayout>
     );
 }
 

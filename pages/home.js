@@ -4,8 +4,6 @@ import Layout from '../components/Layout';
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { supabase } from "../utils/supabaseClient";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 export async function getStaticProps() {
     const { data:posts } = await supabase
@@ -13,9 +11,10 @@ export async function getStaticProps() {
         .select(`
             id,description,songlink,
             created_at,author,
-            profiles:author(username)
+            profiles:author(username,avatar_url)
         `)
         .order('created_at', { ascending: false })
+        .limit(7)
 
     return {
         props: {
@@ -27,14 +26,6 @@ export async function getStaticProps() {
 
 function HomeScreen({posts}) {
     const { isAuthenticated } = useSelector(state => state.auth)
-    const { push } = useRouter()
-
-    useEffect(() => {
-        if (!isAuthenticated) {
-            push('/')
-        } 
-    })
-    
 
     return (
         <Layout
@@ -57,7 +48,7 @@ function HomeScreen({posts}) {
                     <Post
                         key={post.id}
                         post={post}
-                        username={post.profiles.username}
+                        profile={post.profiles}
                     />
                 ))
             }

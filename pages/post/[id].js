@@ -28,7 +28,7 @@ export const getStaticProps = async ({ params }) => {
         .select(`
             id,description,songlink,
             created_at,author,
-            profiles:author(username)
+            profiles:author(username,avatar_url)
         `)
         .eq('id', params.id)
         .single()
@@ -42,19 +42,6 @@ export const getStaticProps = async ({ params }) => {
 }
 
 function PostPage({ post }) {
-    const dispatch = useDispatch()
-    const [user, setUser] = useState(supabase.auth.user() || null)
-
-    useEffect(() => {
-        if (user) {
-            dispatch(setAuthenticated(true))
-            dispatch(getUser())
-        }
-        supabase.auth.onAuthStateChange(async () => {
-            setUser(supabase.auth.user() || null)
-        })
-    })
-
     return (
         <Layout
             title={`Post by ${post.profiles.username}`}
@@ -64,7 +51,7 @@ function PostPage({ post }) {
             <PostCard
                 key={post.id}
                 post={post}
-                username={post.profiles.username}
+                profile={post.profiles}
             />
         </Layout>
     );

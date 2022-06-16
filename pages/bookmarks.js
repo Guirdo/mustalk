@@ -13,10 +13,10 @@ function BookmarksPage() {
     useEffect(() => {
         if (!user) {
             push('/')
+        }else{
+            getBookmarks()
         }
-
-        getBookmarks()
-    })
+    },[])
 
     const getBookmarks = useCallback(async () => {
         if (posts.length === 0) {
@@ -35,7 +35,7 @@ function BookmarksPage() {
                     })
                 })
         }
-    })
+    },[])
 
     return (
         <Layout

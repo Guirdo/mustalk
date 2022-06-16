@@ -1,22 +1,20 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Photo from "./Photo";
 
 function Profile({ profile = {} }) {
-    const { id,username, biography,website} = profile
+    const { id,username, biography,website,avatar_url} = profile
     const { user } = useSelector(state => state.auth);
     const { push } = useRouter();
 
     return (
         <div className="profile">
-            <figure className="profile__photo">
-                <Image
-                    src="/icons/user.png"
-                    alt="profile"
-                    width={100}
-                    height={100}
-                />
-            </figure>
+            <Photo
+                src={avatar_url}
+                className="profile__photo"
+                height={120}
+                width={120}
+            />
             <h1 className="profile__name">{username}</h1>
             <p className="profile__biography">{biography}</p>
             <a

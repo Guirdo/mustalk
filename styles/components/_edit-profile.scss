@@ -12,6 +12,17 @@
         margin-bottom: $s-md;
     }
 
+    &__avatar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__input-photo{
+        margin-block: $s-sm;
+        padding: $s-sm;
+    }
+
     &__form{
         width: 100%;
     }
@@ -33,6 +44,20 @@
         color: gray;
         margin-bottom: $s-sm;
         text-align: right;
+    }
+
+    &__buttons{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $s-sm;
+
+        @include tablet-screen{
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include desktop-screen{
+            grid-template-columns: 1fr 1fr;
+        }
     }
 
 }

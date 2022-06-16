@@ -1,22 +1,23 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import validator from 'validator'
 import Layout from "../../components/Layout";
+import Avatar from "../../components/profile/Avatar";
 import { useForm } from "../../hooks/useForm";
 import { supabase } from "../../utils/supabaseClient";
 
 function EditProfilePage() {
     const [count] = useState(0)
+    const [uploading, setUploading] = useState(false)
     const { user } = useSelector(state => state.auth);
-    const { push } = useRouter();
+    const { push, back } = useRouter();
 
     useEffect(() => {
         if (!user) {
             push('/')
         }
-    }, [user, push])
+    })
 
     const [formValues, handleInputChange] = useForm({
         username: user?.username || "",
@@ -35,7 +36,7 @@ function EditProfilePage() {
                     .from('profiles').update({
                         username,
                         biography,
-                        website
+                        website,
                     })
                     .match({ id: user.id })
 
@@ -65,14 +66,12 @@ function EditProfilePage() {
             <div className="edit-profile">
                 <h1 className="edit-profile__title">Edit Profile</h1>
 
-                <figure className="edit-profile__photo">
-                    <Image
-                        src="/icons/user.png"
-                        alt="profile"
-                        width={100}
-                        height={100}
-                    />
-                </figure>
+                <Avatar
+                    userId={user?.id}
+                    url={user?.avatar_url}
+                    uploading={uploading}
+                    setUploading={setUploading}
+                />
 
                 <form
                     className="edit-profile__form"
@@ -111,12 +110,22 @@ function EditProfilePage() {
                         onChange={handleInputChange}
                     />
 
-                    <button
-                        className="btn btn--primary btn--block"
-                        type="submit"
-                    >
-                        Submit
-                    </button>
+                    <div className="edit-profile__buttons">
+                        <button
+                            className="btn btn--warning btn--block"
+                            onClick={back}
+                            disabled={uploading}
+                        >
+                            Go back
+                        </button>
+                        <button
+                            className="btn btn--primary btn--block"
+                            type="submit"
+                            disabled={uploading}
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </form>
             </div>
         </Layout>

@@ -1,10 +1,6 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
 import Post from "../../components/post/Post";
 import Profile from "../../components/profile/Profile";
-import { getUser, setAuthenticated } from "../../features/auth/authSlice";
 import { supabase } from "../../utils/supabaseClient";
 
 export const getStaticPaths = async () => {
@@ -27,7 +23,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
     const { data:profile } = await supabase
         .from('profiles')
-        .select(`id, username,biography,website`)
+        .select(`id, username,biography,website,avatar_url`)
         .eq('username', params.userName)
         .single()
 
@@ -47,19 +43,6 @@ export const getStaticProps = async ({ params }) => {
 }
 
 function UserPage({ profile, posts }) {
-    const dispatch = useDispatch()
-    const [user, setUser] = useState(supabase.auth.user() || null)
-
-    useEffect(() => {
-        if (user) {
-            dispatch(setAuthenticated(true))
-            dispatch(getUser())
-        }
-        supabase.auth.onAuthStateChange(async (event, session) => {
-            setUser(supabase.auth.user() || null)
-        })
-    })
-
     return (
         <Layout
             title={profile?.username}
@@ -71,7 +54,7 @@ function UserPage({ profile, posts }) {
                     <Post
                         key={post.id}
                         post={post}
-                        username={profile.username}
+                        profile={profile}
                     />
                 ))
             }

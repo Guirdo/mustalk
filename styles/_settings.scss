@@ -10,11 +10,13 @@ $danger: #FF515A;
 
 $colors: ("primary": $primary,
     "secondary":$secondary,
+    "warning":$warning,
+    "danger":$danger,
     "info":$info,
     "white":$white,
 );
 
-$base-colors: ("primary", "secondary","white");
+$base-colors: ("primary", "secondary","warning","danger","white");
 
 :root {
     @each $colorName,

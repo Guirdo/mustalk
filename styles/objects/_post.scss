@@ -7,6 +7,10 @@
 
   border-bottom: 1px solid gray;
 
+  &__user-photo{
+    border-radius: 50%;
+  }
+
   &__user {
     font-weight: bold;
     text-decoration: underline;

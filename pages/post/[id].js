@@ -39,7 +39,7 @@ export const getStaticProps = async ({ params }) => {
     }
 }
 
-function PostPage({ post, profile }) {
+function PostPage({ post = {}, profile= {} }) {
     return (
         <Layout
             title={`Post by ${profile?.username}`}

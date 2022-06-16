@@ -3,9 +3,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabaseClient";
 
-function Avatar({ userId,url, onUpload }) {
+function Avatar({ userId,url, uploading, setUploading}) {
     const [avatarUrl, setAvatarUrl] = useState(null)
-    const [uploading, setUploading] = useState(false)
 
     useEffect(() => {
         if (url) setAvatarUrl(`https://soemnqnroxxnmbxbehex.supabase.co/storage/v1/object/public/avatars/${url}`)
@@ -39,7 +38,16 @@ function Avatar({ userId,url, onUpload }) {
                 throw uploadError
             }
 
-            onUpload(filePath)
+            await supabase
+                .from('profiles')
+                .update({
+                    avatar_url: filePath
+                })
+                .match({ id: userId })
+                .then(()=> alert('Your avatar has been updated'))
+
+
+            setAvatarUrl(`https://soemnqnroxxnmbxbehex.supabase.co/storage/v1/object/public/avatars/${filePath}`)
         } catch (error) {
             alert(error.message)
         } finally {
@@ -48,18 +56,16 @@ function Avatar({ userId,url, onUpload }) {
     }
 
     return (
-        <div>
+        <div className="edit-profile__avatar">
             <Image
                 src={avatarUrl || '/icons/user.png'}
                 alt="Avatar"
-                height={100}
-                width={100}
+                height={150}
+                width={150}
             />
             <div >
-                <label className="button primary block" htmlFor="single">
-                    {uploading ? 'Uploading ...' : 'Upload'}
-                </label>
                 <input
+                    className="edit-profile__input-photo"
                     type="file"
                     id="single"
                     accept="image/*"

@@ -13,8 +13,8 @@ function Profile({ profile = {} }) {
             <Photo
                 src={avatar_url}
                 className="profile__photo"
-                height={100}
-                width={100}
+                height={120}
+                width={120}
             />
             <h1 className="profile__name">{username}</h1>
             <p className="profile__biography">{biography}</p>

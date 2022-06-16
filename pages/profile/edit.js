@@ -10,9 +10,9 @@ import { supabase } from "../../utils/supabaseClient";
 
 function EditProfilePage() {
     const [count] = useState(0)
-    const [avatar_url, setAvatarUrl] = useState('')
+    const [uploading, setUploading] = useState(false)
     const { user } = useSelector(state => state.auth);
-    const { push } = useRouter();
+    const { push, back } = useRouter();
 
     useEffect(() => {
         if (!user) {
@@ -38,7 +38,6 @@ function EditProfilePage() {
                         username,
                         biography,
                         website,
-                        avatar_url,
                     })
                     .match({ id: user.id })
 
@@ -68,12 +67,11 @@ function EditProfilePage() {
             <div className="edit-profile">
                 <h1 className="edit-profile__title">Edit Profile</h1>
 
-                <Avatar 
+                <Avatar
                     userId={user?.id}
                     url={user?.avatar_url}
-                    onUpload={(url)=>{
-                        setAvatarUrl(url)
-                    }}
+                    uploading={uploading}
+                    setUploading={setUploading}
                 />
 
                 <form
@@ -113,12 +111,22 @@ function EditProfilePage() {
                         onChange={handleInputChange}
                     />
 
-                    <button
-                        className="btn btn--primary btn--block"
-                        type="submit"
-                    >
-                        Submit
-                    </button>
+                    <div className="edit-profile__buttons">
+                        <button
+                            className="btn btn--warning btn--block"
+                            onClick={back}
+                            disabled={uploading}
+                        >
+                            Go back
+                        </button>
+                        <button
+                            className="btn btn--primary btn--block"
+                            type="submit"
+                            disabled={uploading}
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </form>
             </div>
         </Layout>

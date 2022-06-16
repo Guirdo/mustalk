@@ -43,7 +43,7 @@ function PostPage({ post, profile }) {
     return (
         <Layout
             title={`Post by ${profile?.username}`}
-            description={post.description}
+            description={post?.description}
             author={profile?.username}
         >
             <PostCard

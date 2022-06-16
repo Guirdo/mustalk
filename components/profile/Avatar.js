@@ -1,8 +1,9 @@
+import moment from "moment";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabaseClient";
 
-function Avatar({ url, onUpload }) {
+function Avatar({ userId,url, onUpload }) {
     const [avatarUrl, setAvatarUrl] = useState(null)
     const [uploading, setUploading] = useState(false)
 
@@ -21,14 +22,14 @@ function Avatar({ url, onUpload }) {
             if(url){
                 await supabase.storage
                 .from('avatars')
-                .remove([`/${url}`])
+                .remove([url])
                 .then(() => console.log('Done'))
             }
 
             const file = event.target.files[0]
             const fileExt = file.name.split('.').pop()
-            const fileName = `${Math.random()*100000000000000000}.${fileExt}`
-            const filePath = `${fileName}`
+            const fileName = `${moment().format('MMDDYY_HHmmss')}.${fileExt}`
+            const filePath = `${userId}/${fileName}`
 
             let { error: uploadError } = await supabase.storage
                 .from('avatars')

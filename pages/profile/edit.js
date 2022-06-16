@@ -69,6 +69,7 @@ function EditProfilePage() {
                 <h1 className="edit-profile__title">Edit Profile</h1>
 
                 <Avatar 
+                    userId={user?.id}
                     url={user?.avatar_url}
                     onUpload={(url)=>{
                         setAvatarUrl(url)

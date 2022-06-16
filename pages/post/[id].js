@@ -47,7 +47,7 @@ function PostPage({ post, profile }) {
             author={profile?.username}
         >
             <PostCard
-                key={post.id}
+                key={post?.id}
                 post={post}
                 profile={profile}
             />

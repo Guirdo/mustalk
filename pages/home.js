@@ -14,7 +14,7 @@ export async function getStaticProps() {
             profiles:author(username,avatar_url)
         `)
         .order('created_at', { ascending: false })
-        .limit(7)
+        .limit(15)
 
     return {
         props: {

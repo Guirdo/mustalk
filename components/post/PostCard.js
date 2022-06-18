@@ -28,9 +28,9 @@ function PostCard({ post, profile }) {
             </div>
             <div>
                 <div className="post-card__content">
-                    <p>
+                    <span className="post-card__description">
                         {description}
-                    </p>
+                    </span>
                 </div>
                 <div className="post-card__music-card">
                     <p>
@@ -60,6 +60,8 @@ function PostCard({ post, profile }) {
                     />
                     <ShareBtn
                         postId={id}
+                        username={username}
+                        description={description}
                     />
                     {
                         author === user?.id && (

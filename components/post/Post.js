@@ -1,5 +1,4 @@
 import moment from "moment";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -48,9 +47,9 @@ function Post({ post, profile }) {
                 <div className="post-content"
                     onClick={() => push(`/post/${id}`)}
                 >
-                    <p>
+                    <span className="post-card__description">
                         {description}
-                    </p>
+                    </span>
                 </div>
                 <div className="post__music-card">
                     <p>
@@ -74,6 +73,8 @@ function Post({ post, profile }) {
                     />
                     <ShareBtn
                         postId={id}
+                        username={username}
+                        description={description}
                     />
                     {
                         author === user?.id && (

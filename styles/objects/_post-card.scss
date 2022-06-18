@@ -17,6 +17,10 @@
         font-size: $f-md;
     }
 
+    &__description{
+        white-space: pre-wrap;
+    }
+
     &__music-card{
         font-size: $f-md;
         margin-block: $s-sm;  

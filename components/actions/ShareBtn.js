@@ -1,8 +1,11 @@
 import { ShareAndroid } from "iconoir-react";
 
-function ShareBtn({ postId }) {
+function ShareBtn({ postId,username,description }) {
     const handleClick = () => {
-        navigator.clipboard.writeText(`https://mustalk.vercel.app/post/${postId}`)
+        const post = `${username} - ${description}
+https://mustalk.vercel.app/post/${postId}`;
+
+        navigator.clipboard.writeText(post)
             .then(() => {
                 alert('Copied to clipboard!');
             })

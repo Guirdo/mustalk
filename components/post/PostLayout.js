@@ -33,14 +33,14 @@ function PostLayout({ slug, description, author, children }) {
                 <meta property="og:url" content={`https://mustalk.vercel.app/post/${slug}`} />
                 <meta property="og:title" content={`Post by ${author}`} />
                 <meta property="og:description" content={description} />
-                <meta property="og:image" content={'/icons/mt.png'} />
+                <meta property="og:image" content={'https://soemnqnroxxnmbxbehex.supabase.co/storage/v1/object/public/avatars/mt.png'} />
 
                 {/* Twitter Card */}
                 <meta property="twitter:card" content={'/icons/mt.png'} />
                 <meta property="twitter:url" content={`https://mustalk.vercel.app/post/${slug}`}  />
                 <meta property="twitter:title" content={`Post by ${author}`} />
                 <meta property="twitter:description" content={description} />
-                <meta property="twitter:image" content={'/icons/mt.png'} />
+                <meta property="twitter:image" content={'https://soemnqnroxxnmbxbehex.supabase.co/storage/v1/object/public/avatars/mt.png'} />
             </Head>
 
             <header>

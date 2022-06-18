@@ -1,4 +1,3 @@
-import Layout from "../../components/Layout";
 import PostCard from "../../components/post/PostCard";
 import PostLayout from "../../components/post/PostLayout";
 import { supabase } from "../../utils/supabaseClient";

@@ -28,7 +28,7 @@ function BookmarksPage() {
                     res.data.map(async (bk) => {
                         await supabase
                             .from('post')
-                            .select('id,description,songlink,created_at,author,profiles:author(username)')
+                            .select('id,description,songlink,created_at,author,profiles:author(username,avatar_url)')
                             .match({ id: bk.post_id })
                             .single()
                             .then(res => setPosts(posts => [...posts, res.data]))
@@ -47,7 +47,7 @@ function BookmarksPage() {
                         <Post
                             key={post.id}
                             post={post}
-                            username={post.profiles.username}
+                            profile={post.profiles}
                         />
                     ))
                 ) : (

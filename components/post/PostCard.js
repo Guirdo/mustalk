@@ -18,8 +18,8 @@ function PostCard({ post, profile }) {
             <div className="post-card__profile">
                 <Photo 
                     src={avatar_url}
-                    height={50}
-                    width={50}
+                    height={48}
+                    width={48}
                 />
 
                 <div>

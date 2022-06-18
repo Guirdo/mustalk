@@ -74,8 +74,8 @@ function Compose() {
         >
             <Photo 
                 src={user?.avatar_url}
-                height={40}
-                width={40}
+                height={48}
+                width={48}
             />
             <form
                 onSubmit={handleSubmit}

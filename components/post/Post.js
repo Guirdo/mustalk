@@ -35,8 +35,8 @@ function Post({ post, profile }) {
             <div>
                 <Photo
                     src={avatar_url}
-                    height={40}
-                    width={40}
+                    height={48}
+                    width={48}
                 />
             </div>
             <div >

@@ -10,10 +10,10 @@ export async function getStaticProps() {
         .from('post')
         .select(`
             id,description,songlink,
-            created_at,author,
+            created_at,author, reported,
             profiles:author(username,avatar_url,banned)
         `)
-        //.not('profiles:author(banned)','eq', true)
+        .not('reported','eq', true)
         .order('created_at', { ascending: false })
         //.limit(15)
 
@@ -46,7 +46,7 @@ function HomeScreen({posts}) {
 
             {
                 posts?.map(post => (
-                    !post.profiles.banned && <Post
+                    <Post
                         key={post.id}
                         post={post}
                         profile={post.profiles}

@@ -15,7 +15,7 @@ export async function getStaticProps() {
         `)
         .not('reported','eq', true)
         .order('created_at', { ascending: false })
-        //.limit(15)
+        .limit(15)
 
     return {
         props: {

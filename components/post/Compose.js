@@ -27,7 +27,7 @@ function Compose() {
         e.preventDefault()
 
         try {
-            if (isFormValid() && user.banned === false) {
+            if (isFormValid() && !user.banned) {
                 const { _, error } = await supabase
                     .from('post')
                     .insert({
@@ -82,7 +82,9 @@ function Compose() {
                 <textarea
                     className="post__description"
                     placeholder={
-                        user?.banned ? 'You are banned from posting' : "What are you listening to?"
+                        user?.banned ? 
+                            "You are banned from posting, may be you were not talking about music" 
+                        : "What are you listening to?"
                     }
                     rows={4}
                     name="description"

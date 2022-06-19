@@ -11,10 +11,11 @@ export async function getStaticProps() {
         .select(`
             id,description,songlink,
             created_at,author,
-            profiles:author(username,avatar_url)
+            profiles:author(username,avatar_url,banned)
         `)
+        //.not('profiles:author(banned)','eq', true)
         .order('created_at', { ascending: false })
-        .limit(15)
+        //.limit(15)
 
     return {
         props: {
@@ -45,7 +46,7 @@ function HomeScreen({posts}) {
 
             {
                 posts?.map(post => (
-                    <Post
+                    !post.profiles.banned && <Post
                         key={post.id}
                         post={post}
                         profile={post.profiles}

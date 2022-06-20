@@ -6,6 +6,7 @@ import validator from 'validator'
 import { supabase } from '../../utils/supabaseClient';
 import { useForm } from '../../hooks/useForm';
 import Photo from '../profile/Photo';
+import checkValidUrl from '../../utils/checkValidUrl';
 
 function Compose() {
     const [count, setCount] = useState(0)
@@ -59,7 +60,7 @@ function Compose() {
     const isFormValid = () => {
         if (validator.isEmpty(description)) {
             return false
-        } else if (!validator.isURL(songlink)) {
+        } else if (!checkValidUrl(songlink)) {
             return false
         }
 

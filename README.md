@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mustalk
 
-## Getting Started
+![mustalk](https://socialify.git.ci/Guirdo/mustalk/image?descriptionEditable=A%20social%20network%20where%20you%20can%20share%20your%20taste%20in%20music%20and%20talk%20about%20it%20with%20more%20details&font=KoHo&language=1&name=1&owner=1&pattern=Charlie%20Brown&stargazers=1&theme=Light)
 
-First, run the development server:
+A social network where you can share your taste in music and talk about it with more details.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Table of contents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Snapshots
+- Features
+- Installation step
+- The process
+    - Built with
+- License 
+- Author
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Snapshots
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+![mustalk-home](https://www.guirdo.xyz/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2F0ccxyq7dpwrp%2F7dPdk9gQk8wQ59su2OLJIv%2F31434aaa3eb555f8b44dcd8e7b4b9b6a%2FUntitled.png&w=1920&q=75)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Features
 
-## Learn More
+- Login with a magic link
+- Personalize your profile with a description and photo of you
+- Share a song that you like and tell everybody why you like it, how you fund it or what it is your favorite part
 
-To learn more about Next.js, take a look at the following resources:
+## Installation step
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone this repository 
+2. Run npm install
+3. Then run npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## The process
 
-## Deploy on Vercel
+### Built with
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- NextJS 12
+- ReactJS 18
+- SASS
+- Supabase
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+> This project is licensed under the MIT License
+
+## Author
+
+Made with :heart: by [Guirdo](https://github.com/Guirdo)

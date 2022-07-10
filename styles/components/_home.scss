@@ -44,3 +44,15 @@
     padding: $s-md;
     border: 2px dotted $primary;
 }
+
+.home-pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: $s-md;
+    margin-bottom: $s-lg;
+    color: $info;
+    border-bottom:1px solid gray;
+    cursor: pointer;
+}
